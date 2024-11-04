@@ -8,10 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gothic+A1&display=swap');
+
 
         * {
-            font-family: 'Gowun Dodum', sans-serif;
+            font-family: "Gothic A1", sans-serif;
+            font-weight: 400;
+            font-style: normal;
         }
 
         .header {
@@ -37,29 +40,33 @@
         .myimage {
             background-color: green;
             height: 300px;
+            width: 300px;
             margin-left: 10%;
             margin-right: 10px;
             border-radius: 50%;
             overflow: hidden;
-            float: inline-start;
-
         }
 
         .sogae {
-            background-color: rgb(252, 193, 203);
-            height: 300px;
-            margin-left: 10%;
-            float: inline-end left;
+            background-color: rgba(252, 193, 203, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-left: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             overflow: auto;
-            padding-top: 20px;
-            padding-left: 20px;
-            padding-bottom: 10px;
-            margin-right: 15%;
+        }
+
+        .sogae div {
+            margin-bottom: 10px;
+        }
+
+        .sogae div:last-child {
+            margin-bottom: 0;
         }
 
         .main {
-            background-position: center;
-            background-size: cover;
+            display: flex;
+            align-items: center;
             margin-top: 30px;
             margin-left: auto;
             margin-bottom: 50px;
@@ -75,27 +82,62 @@
         }
 
         .blogbtn {
-            margin-top: 100px;
-            margin-left: 15%;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            margin-left: 20px;
         }
+
+        .imageblog {
+            margin-left: 200px;
+            margin-right: 40px;
+        }
+
         .likebutton {
-            padding-top: 5px;
-            width:35px;
-            height: 35px;
+            width: 50px;
+            height: 50px;
             background-size: cover;
             background-color: white;
-            border:none;
-            cursor:pointer;
+            border: none;
             background-image: url('image/ICON-removebg-preview.png');
+            margin: 0 auto;
         }
+
         .card-group {
             margin-right: 20%;
             margin-left: 20%;
         }
 
+        .littletitle {
+            margin: 0;
+            font-size: 24px;
+            color: rgb(165, 6, 104);
+            margin-bottom: 40px;
+            padding-top: 20px;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .like-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .mystyle {
+            height: 30px;
+            width: 600px;
+            background-color: bisque;
+            margin-bottom: 30px;
+        }
+
+        .goal {
+            height: 30px;
+            width: 600px;
+            background-color: bisque;
+        }
     </style>
-
-
 </head>
 
 <body>
@@ -104,49 +146,62 @@
 
     </header>
     <div class="main">
-        <div class="myimage">
+        <div class ="imageblog"><div class="myimage">
             <img src="image/KakaoTalk_20241021_144840718.jpg" height="300">
-        </div>
-        <div class="sogae">
-            소개글을 작성할 겁니다.
-        </div>
+
+        </div> 
         <span class="blogbtn">
             <button type="button" class="btn btn-outline-danger"
                 onclick="location.href='https://heehyun0221.tistory.com/'">블로그 가기</button>
-        </span>
+        </span></div>
         
-    </div>
+        <div class="sogae">
+            <div class="mystyle">제 mbti는 intp 입니다! </div>
+            <div class="mystyle">저는 게임과 여행을 좋아합니다.</div>
+            <div class="mystyle">사전캠프 기간때에 혼자 후쿠오카를 다녀왔습니다.</div>
+            <div class="goal">저에게 큰 목표는 없지만, 당장의 목표는 프로젝트 무사히 끝내기입니다!!!</div>
+        </div>
+ </div>
 
+        
+
+   
+
+    <div class="littletitle">다른 멤버 소개 보러가기</div>
     <div class="card-group">
+
         <div class="card">
-          <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">멤버1</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">멤버2</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">멤버3</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-          </div>
+            <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">멤버1</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                    content. This content is a little bit longer.</p>
+            </div>
         </div>
         <div class="card">
             <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
             <div class="card-body">
-              <h5 class="card-title">멤버4</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                <h5 class="card-title">멤버2</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
             </div>
-          </div>
-      </div>
+        </div>
+        <div class="card">
+            <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">멤버3</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                    content. This card has even longer content than the first to show that equal height action.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">멤버4</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                    content. This card has even longer content than the first to show that equal height action.</p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
