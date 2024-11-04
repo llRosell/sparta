@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Introduction</title>
+    <link rel="stylesheet" href="main_style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>E1I4</h1>
+        </header>
+        
+        <!-- Introduction Section -->
+        <section class="intro">
+            <h2>신중한 4과 활기찬 1의 시너지를 담은 팀, 조금이라도 친해지길!</h2>
+        </section>
+        
+        <!-- Member Cards Section -->
+        <section class="member-cards">
+            <!-- <div class="card" onclick="location.href='#'">
+                <img src="path/to/image.jpg" alt="Member Photo">
+                <p>Member Name</p>
+            </div>
+            <div class="card" onclick="location.href='#'">
+                <img src="path/to/image.jpg" alt="Member Photo">
+                <p>Member Name</p>
+            </div>
+            <div class="card" onclick="location.href='#'">
+                <img src="path/to/image.jpg" alt="Member Photo">
+                <p>Member Name</p>
+            </div>
+            <div class="card" onclick="location.href='#'">
+                <img src="path/to/image.jpg" alt="Member Photo">
+                <p>Member Name</p>
+            </div>
+            <div class="card" onclick="location.href='#'">
+                <img src="path/to/image.jpg" alt="Member Photo">
+                <p>Member Name</p>
+            </div> -->
+        </section>
+        
+        <!-- Guestbook Section -->
+        <section class="guestbook">
+            <h3>방명록</h3>
+            <form id="guestbook-form">
+                <input type="text" name="nickname" placeholder="닉네임" required>
+                <input type="text" name="message" placeholder="남길글" required>
+                <button type="submit">등록</button>
+            </form>
+            <div class="guestbook-messages">
+                <!-- Guestbook entries will be displayed here -->
+                <div class="entry">
+                    <p><strong>닉네임</strong>: 남길글</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+ <!-- <script src="firebase_properties.js"></script> -->
+ <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAcNxdfupglLDv1Z18wYRBn-AZelw8OhEk",
+      authDomain: "introduce-ourselves.firebaseapp.com",
+      projectId: "introduce-ourselves",
+      storageBucket: "introduce-ourselves.firebasestorage.app",
+      messagingSenderId: "510644864006",
+      appId: "1:510644864006:web:b252705d880832136c6f87",
+      measurementId: "G-SK0R8C7M9R"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadMembers() {
+        try {
+            const memberCards = document.querySelector('.member-cards');
+            const querySnapshot = await getDocs(collection(db, 'members'));
+            querySnapshot.forEach((doc) => {
+                console.log(doc.id, doc.data());
+                const member = doc.data();
+                const card = document.createElement('div');
+                card.onclick = () => window.location.href = `member.html?id=${doc.id}`;                
+                card.className = 'member-cards';
+                card.innerHTML = `
+                    <img src="${member.image_url}" alt="${member.name} Photo">
+                    <p>${member.name}</p>
+                `;
+                memberCards.appendChild(card);
+            });
+        } catch (error) {   
+            console.error('Error loading members:', error);
+        }
+    }
+    document.addEventListener('DOMContentLoaded', loadMembers);
+    
+  </script>
+ <script>
+
+   
+ </script>
+</html>
