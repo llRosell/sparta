@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.container {
+    width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.intro h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.member-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.card {
+    width: 18%;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card p {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.guestbook {
+    margin-top: 20px;
+}
+
+.guestbook h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#guestbook-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#guestbook-form input[type="text"] {
+    width: 40%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#guestbook-form button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.guestbook-messages .entry {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.guestbook-messages .entry p {
+    font-size: 14px;
+}
+
+.member-cards img {
+    width: 150px; /* 원하는 너비 */
+    height: 200px; /* 원하는 높이 */
+    object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞춤 */
+    border-radius: 8px; /* 원하는 경우 둥근 모서리를 추가 */
+}

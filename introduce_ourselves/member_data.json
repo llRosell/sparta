@@ -1,0 +1,27 @@
+[
+    {
+        "name": "강성욱",
+        "image": "./member/seonguk/profile.png",
+        "description": "호기심이 많아 여러군데 발 걸치기를 좋아합니다!"
+    },
+    {
+        "name": "김리은",
+        "image": "./member/leeeun/profile.png",
+        "description": "안녕하세요. 미니프로젝트 잘 해봐요 :)"
+    },
+    {
+        "name": "이종현",
+        "image": "./member/jonghyun/profile.png",
+        "description": "부족하지만 잘부탁드립니다!"
+    },
+    {
+        "name": "임희현",
+        "image": "./member/heehyun/profile.png",
+        "description": "반갑습니다! 잘부탁드려요!"
+    },
+    {
+        "name": "최영준",
+        "image": "./member/taejoon/profile.png",
+        "description": "잘 부탁 드립니다~"
+    }
+]
