@@ -4,60 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Introduction</title>
-    <link rel="stylesheet" href="main_style.css">
+    <link rel="stylesheet" href="index_style.css">
 </head>
 <body>
-<div class="container">
-    <!-- Header Section -->
-    <header>
-        <h1>E1I4</h1>
-    </header>
-
-    <!-- Introduction Section -->
-    <section class="intro">
-        <h2>신중한 4과 활기찬 1의 시너지를 담은 팀, 조금이라도 친해지길!</h2>
-    </section>
-
-    <!-- Member Cards Section -->
-    <section class="member-cards">
-        <!-- 멤버 카드가 여기 동적으로 추가됩니다 -->
-    </section>
-
-    <!-- Guestbook Section -->
-    <section class="guestbook">
-        <h3>방명록</h3>
-        <form id="guestbook-form">
-            <input type="text" name="nickname" placeholder="닉네임" required>
-            <input type="text" name="message" placeholder="남길글" required>
-            <button type="submit">등록</button>
-        </form>
-        <div class="guestbook-messages">
-            <!-- Guestbook entries will be displayed here -->
-            <div class="entry">
-                <p><strong>닉네임</strong>: 남길글</p>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>E1I4</h1>
+        </header>
+        
+        <!-- Introduction Section -->
+        <section class="intro">
+            <h2>신중한 4과 활기찬 1의 시너지를 담은 팀, 조금이라도 친해지길!</h2>
+        </section>
+        
+        <!-- Member Cards Section -->
+        <section class="member-cards">
+            <!-- 멤버 카드가 여기 동적으로 추가됩니다 -->
+        </section>
+        
+        <!-- Guestbook Section -->
+        <section class="guestbook">
+            <h3>방명록</h3>
+            <form id="guestbook-form">
+                <input type="text" name="nickname" placeholder="닉네임" required>
+                <input type="text" name="message" placeholder="남길글" required>
+                <button type="submit">등록</button>
+            </form>
+            <div class="guestbook-messages">
+                <!-- Guestbook entries will be displayed here -->
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 </body>
 
 <!-- Firebase 설정 및 스크립트 -->
 <script type="module">
     // Firebase SDK import
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+    import { getFirestore, collection, getDocs, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
     // Firebase configuration
     const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "introduce-ourselves.firebaseapp.com",
-        projectId: "introduce-ourselves",
-        storageBucket: "introduce-ourselves.appspot.com",
-        messagingSenderId: "510644864006",
-        appId: "1:510644864006:web:b252705d880832136c6f87",
-        measurementId: "G-SK0R8C7M9R"
+      apiKey: "YOUR_API_KEY",
+      authDomain: "introduce-ourselves.firebaseapp.com",
+      projectId: "introduce-ourselves",
+      storageBucket: "introduce-ourselves.appspot.com",
+      messagingSenderId: "510644864006",
+      appId: "1:510644864006:web:b252705d880832136c6f87",
+      measurementId: "G-SK0R8C7M9R"
     };
-
+  
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
@@ -69,8 +66,8 @@
             const querySnapshot = await getDocs(collection(db, 'members'));
             querySnapshot.forEach((doc) => {
                 const member = doc.data();
-                console.log(member);
-                console.log(doc.id);
+                // console.log(member);
+                // console.log(doc.id);
                 const card = document.createElement('div');
                 card.onclick = () => window.location.href = `member/${member.name}/detail_page.html?id=${doc.id}`;
                 card.className = 'card';
@@ -80,13 +77,61 @@
                 `;
                 memberCards.appendChild(card);
             });
-        } catch (error) {
+        } catch (error) {   
             console.error('Error loading members:', error);
         }
     }
 
-    // 페이지 로드 시 멤버 로딩
-    document.addEventListener('DOMContentLoaded', loadMembers);
+    // 방명록 메시지 Firestore에 저장
+    async function addGuestbookMessage(nickname, message) {
+        try {
+            await addDoc(collection(db, 'guest_books'), {
+                nickname: nickname,
+                message: message,
+                timestamp: new Date()  // 메시지 추가 시간을 기록
+            });
+        } catch (error) {
+            console.error('Error adding guestbook message:', error);
+        }
+    }
+
+    // 방명록 메시지 Firestore에서 불러오기 및 표시
+    function loadGuestbookMessages() {
+    const guestbookMessagesContainer = document.querySelector('.guestbook-messages');
+
+    // Firestore의 'guest_books' 컬렉션을 실시간으로 감시하고, timestamp 기준 내림차순으로 정렬
+        const q = query(collection(db, 'guest_books'), orderBy('timestamp', 'desc'));
+        onSnapshot(q, (snapshot) => {
+            guestbookMessagesContainer.innerHTML = "";  // 기존 메시지 초기화
+            snapshot.forEach((doc) => {
+                const entry = doc.data();
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('entry');
+                messageDiv.innerHTML = `<p><strong>${entry.nickname}</strong>: ${entry.message}</p>`;
+                guestbookMessagesContainer.appendChild(messageDiv);
+            });
+        });
+    }
+
+    
+    // 방명록 폼 제출 시 Firestore에 메시지 추가
+    document.getElementById('guestbook-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const nickname = e.target.nickname.value;
+        const message = e.target.message.value;
+        
+        await addGuestbookMessage(nickname, message);
+
+        // 입력 필드 초기화
+        e.target.nickname.value = '';
+        e.target.message.value = '';
+    });
+
+    // 페이지 로드 시 멤버 및 방명록 메시지 로딩
+    document.addEventListener('DOMContentLoaded', () => {
+        loadMembers();
+        loadGuestbookMessages();
+    });
 </script>
 
 </html>

@@ -4,62 +4,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>강성욱 (ISTP)</title>
-    <link rel="stylesheet" href="style.css">
+    <title>팀원(MBTI)</title>
+    <link rel="stylesheet" href="detail_style.css">
 </head>
 
 <body>
 
     <div class="container">
-        <h1>강성욱 (ISTP)</h1>
+        <h1 id="member-name">팀원 이름 (MBTI)</h1>
 
         <section class="intro-section">
             <div class="intro-text">
-                <h2>저에 대해 소개합니다!</h2>
-                호기심이 많아 여러군데 발 걸치기를 좋아합니다!
+                <h2 id="brief">저에 대해 소개합니다!</h2>
+                <p id="member-description">멤버의 소개 글이 여기에 표시됩니다.</p>
             </div>
-            <div class="intro-image">
-                이미지 영역
+            <div class="intro-image" id="member-image">
+                <!-- 이미지가 여기에 동적으로 추가됨 -->
+                <div class="tmi-section">
+                    <h3>TMI</h3>
+                    <p class="tmi-info">좋아하는 음식: 초밥 | 취미: 서핑 | 최근 읽은 책: <em>호밀밭의 파수꾼</em></p>
+                </div>
             </div>
         </section>
 
-        <!-- <section class="intro-section">
-            <div class="intro-text">
-                <h2>팀 소개 내용 2</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua...</p>
-                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-                    quia non numquam eius modi tempora incidunt ut labore et dolore...</p>
-            </div>
-        </section> -->
-
         <section class="team-member-section">
-            <h2>팀원</h2>
-            <div class="team-members">
-                <div class="member">
-                    <img src="#" alt="팀원 사진">
-                    <p>팀원 1</p>
-                </div>
-                <div class="member">
-                    <img src="#" alt="팀원 사진">
-                    <p>팀원 2</p>
-                </div>
-                <div class="member">
-                    <img src="#" alt="팀원 사진">
-                    <p>팀원 3</p>
-                </div>
-                <div class="member">
-                    <img src="#" alt="팀원 사진">
-                    <p>팀원 4</p>
-                </div>
-                <div class="member">
-                    <img src="#" alt="팀원 사진">
-                    <p>팀원 5</p>
-                </div>
+            <h2>다른 팀원들</h2>
+            <div class="team-members" id="team-members">
+                <!-- 팀원이 동적으로 추가됩니다 -->
             </div>
         </section>
     </div>
 
 </body>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "introduce-ourselves.firebaseapp.com",
+        projectId: "introduce-ourselves",
+        storageBucket: "introduce-ourselves.appspot.com",
+        messagingSenderId: "510644864006",
+        appId: "1:510644864006:web:b252705d880832136c6f87",
+        measurementId: "G-SK0R8C7M9R"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    async function loadMemberDetail() {
+        if (id) {
+            try {
+                const memberRef = doc(db, 'members', id);
+                const memberSnap = await getDoc(memberRef);
+                
+                if (memberSnap.exists()) {
+                    const memberData = memberSnap.data();
+                    document.title = `${memberData.name}(${memberData.mbti})`;
+                    document.getElementById("brief").textContent = `${memberData.brief}`;
+                    document.getElementById("member-name").textContent = `${memberData.name}(${memberData.mbti}) : ${memberData.tmi}`;
+                    document.getElementById("member-description").textContent = memberData.introduction;
+
+                    if (memberData.image_url) {
+                        const imageContainer = document.getElementById("member-image");
+                        imageContainer.innerHTML = `<img src="${memberData.image_url}" alt="${memberData.name}의 사진">`;
+                    }
+                } else {
+                    document.getElementById("member-description").textContent = "해당 멤버 정보를 찾을 수 없습니다.";
+                }
+            } catch (error) {
+                console.error("Error loading member detail:", error);
+            }
+        } else {
+            console.log("ID가 전달되지 않았습니다.");
+        }
+    }
+
+    async function loadTeamMembers() {
+        try {
+            const teamMembersContainer = document.getElementById("team-members");
+            const querySnapshot = await getDocs(collection(db, 'members'));
+
+            querySnapshot.forEach((doc) => {
+                const memberId = doc.id;
+                const member = doc.data();
+
+                if (memberId === id) return;
+                
+                // 멤버 카드를 생성하여 team-members 컨테이너에 추가
+                const memberDiv = document.createElement('div');
+                memberDiv.onclick = () => window.location.href = `../../member/${member.name}/detail_page.html?id=${doc.id}`;
+                memberDiv.classList.add('member');
+                memberDiv.style.cursor = 'pointer';
+                
+                memberDiv.innerHTML = `
+                    <img src="${member.image_url || '#'}" alt="${member.name}의 사진">
+                    <p>${member.name}(${member.mbti})</p>
+                `;
+                
+                teamMembersContainer.appendChild(memberDiv);
+            });
+        } catch (error) {
+            console.error("Error loading team members:", error);
+        }
+    }
+
+    loadMemberDetail();
+    loadTeamMembers();
+</script>
 
 </html>
