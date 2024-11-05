@@ -24,34 +24,89 @@
         </div>
     </div>
 
-    <!--팀원 소개-->
-    <div class="teamcards">
-        <div class="teamcard">
-            <img src="..." class="team card_img" alt="팀원 사진">
-            <div class="card-body">
-                <h5 class="card-title">이름</h5>
-            </div>
-        </div>
-        <div class="teamcard">
-            <img src="..." class="team card_img" alt="팀원 사진">
-            <div class="card-body">
-                <h5 class="card-title">이름</h5>
-            </div>
-        </div>
-        <div class="teamcard">
-            <img src="..." class="team card_img" alt="팀원 사진">
-            <div class="card-body">
-                <h5 class="card-title">이름</h5>
-            </div>
-        </div>
-        <div class="teamcard">
-            <img src="..." class="team card_img" alt="팀원 사진">
-            <div class="card-body">
-                <h5 class="card-title">이름</h5>
-            </div>
-        </div>
-    </div>
+    <!-- 팀원 카드가 표시될 영역 -->
+    <div class="teamcards" id="teamcards"></div>
 
 </body>
+<script type="module">
+    // Firebase SDK import
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getFirestore, collection, doc, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcNxdfupglLDv1Z18wYRBn-AZelw8OhEk",
+            authDomain: "introduce-ourselves.firebaseapp.com",
+            projectId: "introduce-ourselves",
+            storageBucket: "introduce-ourselves.firebasestorage.app",
+            messagingSenderId: "510644864006",
+            appId: "1:510644864006:web:b252705d880832136c6f87",
+            measurementId: "G-SK0R8C7M9R"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+    // URL에서 memberId 가져오기
+    const urlParams = new URLSearchParams(window.location.search);
+    const memberId = urlParams.get('id');
+    console.log(memberId);
+
+    // 멤버 데이터를 불러와 멤버 카드를 생성하는 함수
+    async function loadMemberCard(memberId) {
+        try {
+            // Firestore에서 해당 memberId 문서 가져오기
+            const docRef = doc(db, 'members', memberId);
+            const docSnap = await getDoc(docRef);
+
+            // 문서가 존재할 경우 데이터 가져오기
+            if (docSnap.exists()) {
+                const memberData = docSnap.data();
+                const card = createMemberCard(memberData);
+                document.getElementById("teamcards").appendChild(card);
+            } else {
+                console.error("No document found with the given ID.");
+            }
+        } catch (error) {
+            console.error("Error fetching member data:", error);
+        }
+    }
+
+    // 멤버 카드 생성 함수
+    function createMemberCard(member) {
+        // 요소 생성 및 클래스 추가
+        const card = document.createElement("div");
+        card.className = "teamcard";
+
+        const img = document.createElement("img");
+        img.src = member.image_url || "default-image.jpg"; // 이미지 URL이 없으면 기본 이미지 사용
+        img.className = "team card_img";
+        img.alt = "팀원 사진";
+
+        const cardBody = document.createElement("div");
+        cardBody.className = "card-body";
+
+        const cardTitle = document.createElement("h5");
+        cardTitle.className = "card-title";
+        cardTitle.innerText = `${member.name} (${member.mbti})`; // 멤버 이름과 MBTI 표시
+
+        // 요소들을 카드에 추가
+        cardBody.appendChild(cardTitle);
+        card.appendChild(img);
+        card.appendChild(cardBody);
+
+        return card; // 완성된 카드를 반환
+    }
+
+    // 페이지 로드 시 함수 호출
+    if (memberId) {
+        loadMemberCard(memberId);
+    } else {
+        console.error("No memberId found in URL.");
+    }
+
+
+</script>
 
 </html>
