@@ -119,12 +119,8 @@ header h1 {
 }
 
 .guestbook-messages .entry .actions {
-    display: none;
+    display: flex; /* 항상 표시되도록 변경 */
     gap: 5px;
-}
-
-.guestbook-messages .entry:hover .actions {
-    display: flex;
 }
 
 .guestbook-messages .entry .actions button {

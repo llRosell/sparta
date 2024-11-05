@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Introduction</title>
     <link rel="stylesheet" href="index_style.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Header Section -->
         <header>
             <h1>E1I4</h1>
         </header>
-        
+
         <!-- Introduction Section -->
         <section class="intro">
             <h2>신중한 4과 활기찬 1의 시너지를 담은 팀, 조금이라도 친해지길!</h2>
         </section>
-        
+
         <!-- Member Cards Section -->
         <section class="member-cards">
             <!-- 멤버 카드가 여기 동적으로 추가됩니다 -->
         </section>
-        
+
         <!-- Guestbook Section -->
         <section class="guestbook">
             <h3>방명록</h3>
@@ -42,22 +44,45 @@
 <script type="module">
     // Firebase SDK import
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getFirestore, collection, getDocs, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+    import { getFirestore, collection, getDocs, addDoc, deleteDoc, updateDoc, doc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
     // Firebase configuration
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "introduce-ourselves.firebaseapp.com",
-      projectId: "introduce-ourselves",
-      storageBucket: "introduce-ourselves.appspot.com",
-      messagingSenderId: "510644864006",
-      appId: "1:510644864006:web:b252705d880832136c6f87",
-      measurementId: "G-SK0R8C7M9R"
+        apiKey: "AIzaSyAcNxdfupglLDv1Z18wYRBn-AZelw8OhEk",
+        authDomain: "introduce-ourselves.firebaseapp.com",
+        projectId: "introduce-ourselves",
+        storageBucket: "introduce-ourselves.appspot.com",
+        messagingSenderId: "510644864006",
+        appId: "1:510644864006:web:b252705d880832136c6f87",
+        measurementId: "G-SK0R8C7M9R"
     };
-  
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    let currentUserUID = null;
+
+    // 익명 로그인 요청
+    // console.log(auth);
+    signInAnonymously(auth)
+        // .then()
+        .catch((error) => {
+            console.error("익명 로그인 오류:", error);
+        })
+
+    // // 로그인 상태 변화 감지
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // 익명 사용자 UID
+            currentUserUID = user.uid;
+            console.log("사용자 UID:", currentUserUID);
+        } else {
+            console.log("사용자가 로그아웃 상태입니다.");
+        }
+    });
 
     // 멤버 정보를 Firestore에서 불러와 동적으로 카드 생성
     async function loadMembers() {
@@ -77,7 +102,7 @@
                 `;
                 memberCards.appendChild(card);
             });
-        } catch (error) {   
+        } catch (error) {
             console.error('Error loading members:', error);
         }
     }
@@ -88,6 +113,7 @@
             await addDoc(collection(db, 'guest_books'), {
                 nickname: nickname,
                 message: message,
+                writer_uid: currentUserUID,
                 timestamp: new Date()  // 메시지 추가 시간을 기록
             });
         } catch (error) {
@@ -97,29 +123,79 @@
 
     // 방명록 메시지 Firestore에서 불러오기 및 표시
     function loadGuestbookMessages() {
-    const guestbookMessagesContainer = document.querySelector('.guestbook-messages');
-
-    // Firestore의 'guest_books' 컬렉션을 실시간으로 감시하고, timestamp 기준 내림차순으로 정렬
+        const guestbookMessagesContainer = document.querySelector('.guestbook-messages');
         const q = query(collection(db, 'guest_books'), orderBy('timestamp', 'desc'));
+
         onSnapshot(q, (snapshot) => {
-            guestbookMessagesContainer.innerHTML = "";  // 기존 메시지 초기화
+            guestbookMessagesContainer.innerHTML = "";
             snapshot.forEach((doc) => {
                 const entry = doc.data();
                 const messageDiv = document.createElement('div');
                 messageDiv.classList.add('entry');
-                messageDiv.innerHTML = `<p><strong>${entry.nickname}</strong>: ${entry.message}</p>`;
+
+                const isCurrentUser = entry.writer_uid === currentUserUID;
+                messageDiv.innerHTML = `
+                    <p><strong>${entry.nickname}</strong>: ${entry.message}</p>
+                    ${isCurrentUser ? `
+                    <div class="actions">
+                        <button class="edit-button" data-id="${doc.id}" data-message="${entry.message}">수정</button>
+                        <button style="background-color:red" class="delete-button" data-id="${doc.id}">삭제</button>                        
+                    </div>` : ''}
+                `;
                 guestbookMessagesContainer.appendChild(messageDiv);
             });
         });
     }
 
-    
+    async function deleteMessage(id) {
+        if (confirm("정말 삭제하시겠습니까?")) {
+            await deleteDoc(doc(db, 'guest_books', id));
+            console.log("메시지가 삭제되었습니다.");
+        }
+    }
+
+    // 메시지 수정
+    function editMessage(id, currentMessage) {
+        const newMessage = prompt("새로운 메시지를 입력하세요:", currentMessage);
+        if (newMessage && newMessage !== currentMessage) {
+            updateMessage(id, newMessage);
+        }
+    }
+
+    async function updateMessage(id, newMessage) {
+        try {
+            await updateDoc(doc(db, 'guest_books', id), { message: newMessage });
+            alert("메시지가 수정되었습니다.");
+        } catch (error) {
+            console.error("Error updating message:", error);
+        }
+    }
+
+    // window.deleteMessage = deleteMessage;
+    // 이벤트 위임을 사용하여 클릭 이벤트 처리
+    const guestbookMessagesContainer = document.querySelector('.guestbook-messages');
+    guestbookMessagesContainer.addEventListener('click', (event) => {
+        const target = event.target;
+
+        // 삭제 버튼이 클릭된 경우
+        if (target.classList.contains('delete-button')) {
+            const messageId = target.dataset.id;
+            deleteMessage(messageId);
+        }
+        // 수정 버튼이 클릭된 경우
+        else if (target.classList.contains('edit-button')) {
+            const messageId = target.dataset.id;
+            const messageContent = target.dataset.message;
+            editMessage(messageId, messageContent);
+        }
+    });
+
     // 방명록 폼 제출 시 Firestore에 메시지 추가
     document.getElementById('guestbook-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const nickname = e.target.nickname.value;
         const message = e.target.message.value;
-        
+
         await addGuestbookMessage(nickname, message);
 
         // 입력 필드 초기화
