@@ -137,18 +137,39 @@
             width: 600px;
             background-color: bisque;
         }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 0 10px;
+        }
+
+        .card {
+            width: 200px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
     </style>
     <script type="module">
         // Firebase SDK import
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+        import { getFirestore, collection, doc, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
         // Firebase configuration
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
+            apiKey: "AIzaSyAcNxdfupglLDv1Z18wYRBn-AZelw8OhEk",
             authDomain: "introduce-ourselves.firebaseapp.com",
             projectId: "introduce-ourselves",
-            storageBucket: "introduce-ourselves.appspot.com",
+            storageBucket: "introduce-ourselves.firebasestorage.app",
             messagingSenderId: "510644864006",
             appId: "1:510644864006:web:b252705d880832136c6f87",
             measurementId: "G-SK0R8C7M9R"
@@ -162,24 +183,96 @@
         const memberId = urlParams.get('id');
         console.log(memberId);
 
+        async function getMemberData(memberId) {
+
+            try {
+                const docSnap = await getDoc(doc(db, 'members', memberId));
+                if (docSnap.exists()) {
+                    const memberData = docSnap.data();
+                    document.getElementById("memberName").innerText = memberData.name;
+                    document.getElementById("membermbti").innerText = memberData.mbti;
+
+                    const blogButton = document.getElementById("blogBtn");
+                    blogButton.onclick = () => window.location.href = memberData.blog_url;//블로그 버튼을 누르면 블로그로 이동
+
+                } else {
+                    console.log("No such document!");
+                    document.getElementById("memberInfo").innerText = "Member not found.";//id에 맞는거 없으면 에러 출력
+                }
+            } catch (error) {
+                console.error("Error getting document:", error); //데이터 못받아오면 에러 출력
+            }
+        }
+
+        async function getanotherMemberData() {
+            const membersRef = collection(db, 'members'); // members 컬렉션 가져옴
+            try {
+                const querySnapshot = await getDocs(membersRef); // 아까랑 달리 모든 멤버 문서 가져옴
+                const anotherMemberContainer = document.getElementById("anotherMemberContainer"); // 카드가 추가될 컨테이너 가져옴
+
+                querySnapshot.forEach((doc) => {
+                    const memberData = doc.data(); // 데이터 가져오기
+
+                    // 카드 생성
+                    const card = document.createElement('div');
+                    card.className = 'card'; // 카드 클래스 추가 > 스타일에서 수정 예정
+
+                    // 카드에 이미지 추가
+                    const img = document.createElement('img'); 
+                    img.src = memberData.image_url; // 데이터베이스에서 가져온 image_url 사용
+                    img.alt = `${memberData.name}의 이미지`; // 이미지없을 경우 대체 텍스트 출력
+                    img.className = 'card-img-top'; //카드 이미지 클래스 추가 > 스타일에서 수정 예정
+                    img.onclick = () => {
+                        location.href = `../${memberData.name}/detail_page.html`;//이미지 클릭 시 다른 멤버 상세 페이지로 이동
+                    };
+                    card.appendChild(img); //위에 만든 카드에 이미지를 추가함
+
+                    // 카드 바디 추가
+                    const cardBody = document.createElement('div'); //설명이랑 제목 넣을 부분 텍스트, 데이터베이스에서 name, tmi 사용
+                    cardBody.className = 'card-body'; // 카드바디 클래스 추가 > 스타일에서 수정 예정
+
+                    // 카드 제목 추가
+                    const name = document.createElement('h5'); //이름 들어갈 부분
+                    name.className = 'card-name'; //이름 들어갈 부분 클래스 > 스타일에서 폰트 따로 설정 해줘야 되는지?
+                    name.innerText = memberData.name || "이름 없음";
+                    cardBody.appendChild(name); // 카드 바디에 이름 추가
+
+                    // 카드 텍스트 추가
+                    const tmi = document.createElement('p'); //tmi 추가할 부분
+                    tmi.className = 'card-text'; // tmi 스타일 조정 부분
+                    tmi.innerText = memberData.tmi || "정보 없음"; // tmi 내용 가져옴
+                    cardBody.appendChild(tmi); // 카드 바디에 tmi 추가 , 이름 뒤에 와야함
+
+                    
+                    card.appendChild(cardBody); // 카드 바디를 카드에 추가
+
+                    anotherMemberContainer.appendChild(card); // 카드 추가
+                });
+            } catch (error) {
+                console.error("Error getting documents:", error); // 오류 처리
+            }
+
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            getMemberData(memberId);  // memberId로 데이터 가져오기
+            getanotherMemberData(); // 다른 멤버의 데이터를 가져와서 카드에 넣을 것
+        });
     </script>
 
 </head>
 
 <body>
     <header class="header">
-        <h1>INTP 임희현의 소개</h1>
-
+        <h1> <span id="membermbti"> </span><span id="memberName"></span>의 소개</h1>
     </header>
     <div class="main">
         <div class="imageblog">
             <div class="myimage">
                 <img src="image/KakaoTalk_20241021_144840718.jpg" height="300">
-
             </div>
             <span class="blogbtn">
-                <button type="button" class="btn btn-outline-danger"
-                    onclick="location.href='https://heehyun0221.tistory.com/'">블로그 가기</button>
+                <button type="button" class="btn btn-outline-danger" id="blogBtn">블로그 가기</button>
             </span>
         </div>
 
@@ -192,43 +285,9 @@
     </div>
 
 
-
-
-
     <div class="littletitle">다른 멤버 소개 보러가기</div>
-    <div class="card-group">
-
-        <div class="card">
-            <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">멤버1</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">멤버2</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">멤버3</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="..." class="card-img-top" onclick="location.href='멤버1.html'" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">멤버4</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-        </div>
+    <div class="container mt-4">
+        <div class="card-container" id="anotherMemberContainer"></div>
     </div>
 </body>
 
