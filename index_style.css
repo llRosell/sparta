@@ -103,12 +103,41 @@ header h1 {
     background-color: #0056b3;
 }
 
+/* 방명록 항목 스타일 */
 .guestbook-messages .entry {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     font-size: 14px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .guestbook-messages .entry p {
-    margin-bottom: 5px;
+    margin: 0;
+}
+
+.guestbook-messages .entry .actions {
+    display: none;
+    gap: 5px;
+}
+
+.guestbook-messages .entry:hover .actions {
+    display: flex;
+}
+
+.guestbook-messages .entry .actions button {
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.guestbook-messages .entry .actions button:hover {
+    background-color: #0056b3;
 }
