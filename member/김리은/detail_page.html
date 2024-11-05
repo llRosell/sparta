@@ -87,24 +87,18 @@
     }
   </style>
   </head>
-
 <body>
   <div class="header">
     <div class="p-5 mb-4 bg-body-tertiary rounded-3">
       <div class="container-fluid py-5">
         <div class="jumbotron-message">
-          <h1 class="display-5" style="font-family: 'Black Han Sans', sans-serif; ">안녕하세요. 김리은입니다.
-          </h1>
-          <p class="col-md-8 fs-4">
-            <br>
-          </p>
+          <h1 class="display-5" style="font-family: 'Black Han Sans', sans-serif;">안녕하세요. 김리은입니다.</h1>
+          <p class="col-md-8 fs-4"><br></p>
           <div class="card">
             <div class="row g-0">
               <h5 class="card-title1">김리은 ESTJ</h5>
               <div class="col-md-4">
-                <img
-                  src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcjPWAt%2FbtsKt96UIxp%2Fu805ku7SfG86Kllj7gFL00%2Fimg.png"
-                  class="img-fluid rounded-start" alt="...">
+                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcjPWAt%2FbtsKt96UIxp%2Fu805ku7SfG86Kllj7gFL00%2Fimg.png" class="img-fluid rounded-start" alt="...">
                 <h5 class="card-title2">
                   <p>내일배움캠프</p>
                   <p>spring 4기 1조 김리은입니다 :)</p>
@@ -118,80 +112,61 @@
                   <p class="card-text1">회계를 통해 배운 꼼꼼함과 <br>오류를 찾아내는 능력입니다.</p>
                   <h5 class="card-title3">협업 스타일</h5>
                   <p class="card-text1">잘 모르는 부분은 질문하고 <br>상대의 의견을 구합니다.</p>
-                  <p class="card-text2"><small class="text-body-secondary"><a href="https://creator0920.tistory.com/">
-                        <h1><span style="color: palevioletred; font-size: 20px;">개인블로그 바로가기</span></h1>
-                      </a></small></p>
+                  <p class="card-text2"><small class="text-body-secondary"><a href="https://creator0920.tistory.com/">블로그 링크</a></small></p>
                 </div>
               </div>
             </div>
           </div>
           <div class="mycards">
             <div class="member-cards row row-cols-1 row-cols-md-5">
-              <!-- <div class="col">
-                <div class="card1 h-50">
-                  <img
-                    src="${member.image_url}"
-                    class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">${member.name}</h5>
-                  </div>
-                </div> -->
-              </div>
-</body>
+              <!-- Firebase에서 불러온 멤버 카드가 여기에 추가됩니다. -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- <script src="firebase_properties.js"></script> -->
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+    const firebaseConfig = {
+      apiKey: "AIzaSyAcNxdfupglLDv1Z18wYRBn-AZelw8OhEk",
+      authDomain: "introduce-ourselves.firebaseapp.com",
+      projectId: "introduce-ourselves",
+      storageBucket: "introduce-ourselves.firebasestorage.app",
+      messagingSenderId: "510644864006",
+      appId: "1:510644864006:web:b252705d880832136c6f87",
+      measurementId: "G-SK0R8C7M9R"
+    };
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAcNxdfupglLDv1Z18wYRBn-AZelw8OhEk",
-    authDomain: "introduce-ourselves.firebaseapp.com",
-    projectId: "introduce-ourselves",
-    storageBucket: "introduce-ourselves.firebasestorage.app",
-    messagingSenderId: "510644864006",
-    appId: "1:510644864006:web:b252705d880832136c6f87",
-    measurementId: "G-SK0R8C7M9R"
-  };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  async function loadMembers() {
+    async function loadMembers() {
       try {
-          const memberCards = document.querySelector('.member-cards');
-          const querySnapshot = await getDocs(collection(db, 'members'));
-          querySnapshot.forEach((doc) => {
-              console.log(doc.id, doc.data());
-              const member = doc.data();
-              const card = document.createElement('div');
-              card.onclick = () => window.location.href = `member.html?id=${doc.id}`;                
-              card.className = 'member-cards';
-              card.innerHTML = `
-              <div class="col">
-                <div class="card1">
-                  <img
-                    src="${member.image_url}"
-                    class="card-img-top" style="width: 200px; height: 210px; alt="${member.name} Photo">
-                  <div class="card-body">
-                    <h5 class="card-title">${member.name}</h5>
-                  </div>
-                </div>
-              `;
-              memberCards.appendChild(card);
-          });
-      } catch (error) {   
-          console.error('Error loading members:', error);
+        const memberCards = document.querySelector('.member-cards');
+        const querySnapshot = await getDocs(collection(db, 'members'));
+        querySnapshot.forEach((doc) => {
+          const member = doc.data();
+          const card = document.createElement('div');
+          card.className = 'col';
+          card.innerHTML = `
+            <div class="card1">
+              <img src="${member.image_url}" class="card-img-top" style="width: 200px; height: 210px;" alt="${member.name} Photo">
+              <div class="card-body">
+                <h5 class="card-title">${member.name}</h5>
+              </div>
+            </div>
+          `;
+          memberCards.appendChild(card);
+        });
+      } catch (error) {
+        console.error('Error loading members:', error);
       }
-  }
-  document.addEventListener('DOMContentLoaded', loadMembers);
-  
+    }
+
+    document.addEventListener('DOMContentLoaded', loadMembers);
   </script>
 </html>
