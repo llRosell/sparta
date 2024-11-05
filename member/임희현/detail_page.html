@@ -189,7 +189,7 @@
                 const docSnap = await getDoc(doc(db, 'members', memberId));
                 if (docSnap.exists()) {
                     const memberData = docSnap.data();
-                    document.getElementById("memberName").innerText = memberData.name;
+                    document.getElementById("memberName").innerText = `${memberData.name} 의 소개`
                     document.getElementById("membermbti").innerText = memberData.mbti;
 
                     const blogButton = document.getElementById("blogBtn");
@@ -212,8 +212,8 @@
 
                 querySnapshot.forEach((doc) => {
                     const memberData = doc.data(); // 데이터 가져오기
-
-                    // 카드 생성
+                    if(doc.id!=memberId){
+                         // 카드 생성
                     const card = document.createElement('div');
                     card.className = 'card'; // 카드 클래스 추가 > 스타일에서 수정 예정
 
@@ -223,7 +223,7 @@
                     img.alt = `${memberData.name}의 이미지`; // 이미지없을 경우 대체 텍스트 출력
                     img.className = 'card-img-top'; //카드 이미지 클래스 추가 > 스타일에서 수정 예정
                     img.onclick = () => {
-                        location.href = `../${memberData.name}/detail_page.html`;//이미지 클릭 시 다른 멤버 상세 페이지로 이동
+                        location.href = `../${memberData.name}/detail_page.html?id=${doc.id}`;//이미지 클릭 시 다른 멤버 상세 페이지로 이동
                     };
                     card.appendChild(img); //위에 만든 카드에 이미지를 추가함
 
@@ -247,6 +247,9 @@
                     card.appendChild(cardBody); // 카드 바디를 카드에 추가
 
                     anotherMemberContainer.appendChild(card); // 카드 추가
+                    }
+
+                   
                 });
             } catch (error) {
                 console.error("Error getting documents:", error); // 오류 처리
@@ -255,7 +258,7 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            getMemberData(memberId);  // memberId로 데이터 가져오기
+            getMemberData(memberId);  // 나의memberId로 데이터 가져오기
             getanotherMemberData(); // 다른 멤버의 데이터를 가져와서 카드에 넣을 것
         });
     </script>
@@ -264,7 +267,7 @@
 
 <body>
     <header class="header">
-        <h1> <span id="membermbti"> </span><span id="memberName"></span>의 소개</h1>
+        <h1> <span id="membermbti"> </span><span id="memberName"></span></h1>
     </header>
     <div class="main">
         <div class="imageblog">
