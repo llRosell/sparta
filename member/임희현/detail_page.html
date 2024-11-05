@@ -7,6 +7,7 @@
     <title>INTP 임희현</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gothic+A1&display=swap');
 
@@ -158,11 +159,34 @@
             height: 150px;
             object-fit: cover;
         }
+
+        .dinner-container {
+            height: 400px;
+            background-color: white;
+            margin: 0 300px;
+            padding: 100px, 100px;
+        }
+
+        .mb-3 {
+            float: left;
+            width: 50%;
+            margin: 0 auto;
+
+        }
+
+        .button2 {
+            float: left;
+            width: 10%;
+            margin-left: 30px;
+            margin-top: 32px;
+        }
     </style>
     <script type="module">
+
+
         // Firebase SDK import
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getFirestore, collection, doc, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+        import { getFirestore, collection, doc, getDocs, getDoc, deleteDoc, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
         // Firebase configuration
         const firebaseConfig = {
@@ -175,9 +199,21 @@
             measurementId: "G-SK0R8C7M9R"
         };
 
+        const firebaseConfig_fordinner = {
+            apiKey: "AIzaSyC6QqSDDcKkGB5i0_ZzcWjejGiMVTva1nY",
+            authDomain: "spartaproject-da9c3.firebaseapp.com",
+            projectId: "spartaproject-da9c3",
+            storageBucket: "spartaproject-da9c3.appspot.com",
+            messagingSenderId: "1023750339528",
+            appId: "1:1023750339528:web:670ab80bd4f14704b1defd"
+        };
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        const app2 = initializeApp(firebaseConfig_fordinner, "secondary");
+        const db2 = getFirestore(app2);
 
         const urlParams = new URLSearchParams(window.location.search);
         const memberId = urlParams.get('id');
@@ -212,44 +248,44 @@
 
                 querySnapshot.forEach((doc) => {
                     const memberData = doc.data(); // 데이터 가져오기
-                    if(doc.id!=memberId){
-                         // 카드 생성
-                    const card = document.createElement('div');
-                    card.className = 'card'; // 카드 클래스 추가 > 스타일에서 수정 예정
+                    if (doc.id != memberId) {
+                        // 카드 생성
+                        const card = document.createElement('div');
+                        card.className = 'card'; // 카드 클래스 추가 > 스타일에서 수정 예정
 
-                    // 카드에 이미지 추가
-                    const img = document.createElement('img'); 
-                    img.src = memberData.image_url; // 데이터베이스에서 가져온 image_url 사용
-                    img.alt = `${memberData.name}의 이미지`; // 이미지없을 경우 대체 텍스트 출력
-                    img.className = 'card-img-top'; //카드 이미지 클래스 추가 > 스타일에서 수정 예정
-                    img.onclick = () => {
-                        location.href = `../${memberData.name}/detail_page.html?id=${doc.id}`;//이미지 클릭 시 다른 멤버 상세 페이지로 이동
-                    };
-                    card.appendChild(img); //위에 만든 카드에 이미지를 추가함
+                        // 카드에 이미지 추가
+                        const img = document.createElement('img');
+                        img.src = memberData.image_url; // 데이터베이스에서 가져온 image_url 사용
+                        img.alt = `${memberData.name}의 이미지`; // 이미지없을 경우 대체 텍스트 출력
+                        img.className = 'card-img-top'; //카드 이미지 클래스 추가 > 스타일에서 수정 예정
+                        img.onclick = () => {
+                            location.href = `../${memberData.name}/detail_page.html?id=${doc.id}`;//이미지 클릭 시 다른 멤버 상세 페이지로 이동
+                        };
+                        card.appendChild(img); //위에 만든 카드에 이미지를 추가함
 
-                    // 카드 바디 추가
-                    const cardBody = document.createElement('div'); //설명이랑 제목 넣을 부분 텍스트, 데이터베이스에서 name, tmi 사용
-                    cardBody.className = 'card-body'; // 카드바디 클래스 추가 > 스타일에서 수정 예정
+                        // 카드 바디 추가
+                        const cardBody = document.createElement('div'); //설명이랑 제목 넣을 부분 텍스트, 데이터베이스에서 name, tmi 사용
+                        cardBody.className = 'card-body'; // 카드바디 클래스 추가 > 스타일에서 수정 예정
 
-                    // 카드 제목 추가
-                    const name = document.createElement('h5'); //이름 들어갈 부분
-                    name.className = 'card-name'; //이름 들어갈 부분 클래스 > 스타일에서 폰트 따로 설정 해줘야 되는지?
-                    name.innerText = memberData.name || "이름 없음";
-                    cardBody.appendChild(name); // 카드 바디에 이름 추가
+                        // 카드 제목 추가
+                        const name = document.createElement('h5'); //이름 들어갈 부분
+                        name.className = 'card-name'; //이름 들어갈 부분 클래스 > 스타일에서 폰트 따로 설정 해줘야 되는지?
+                        name.innerText = memberData.name || "이름 없음";
+                        cardBody.appendChild(name); // 카드 바디에 이름 추가
 
-                    // 카드 텍스트 추가
-                    const tmi = document.createElement('p'); //tmi 추가할 부분
-                    tmi.className = 'card-text'; // tmi 스타일 조정 부분
-                    tmi.innerText = memberData.tmi || "정보 없음"; // tmi 내용 가져옴
-                    cardBody.appendChild(tmi); // 카드 바디에 tmi 추가 , 이름 뒤에 와야함
+                        // 카드 텍스트 추가
+                        const tmi = document.createElement('p'); //tmi 추가할 부분
+                        tmi.className = 'card-text'; // tmi 스타일 조정 부분
+                        tmi.innerText = memberData.tmi || "정보 없음"; // tmi 내용 가져옴
+                        cardBody.appendChild(tmi); // 카드 바디에 tmi 추가 , 이름 뒤에 와야함
 
-                    
-                    card.appendChild(cardBody); // 카드 바디를 카드에 추가
 
-                    anotherMemberContainer.appendChild(card); // 카드 추가
+                        card.appendChild(cardBody); // 카드 바디를 카드에 추가
+
+                        anotherMemberContainer.appendChild(card); // 카드 추가
                     }
 
-                   
+
                 });
             } catch (error) {
                 console.error("Error getting documents:", error); // 오류 처리
@@ -257,9 +293,37 @@
 
         }
 
+        $("#input-dinnerBtn").click(async function () {
+            let text = $('#input-dinner').val();
+            console.log(text);
+            let doc = {
+                'text': text
+            };
+
+            try {
+                const docRef = await addDoc(collection(db2, "dinner"), doc
+                );
+                alert("음식이 추가 되었습니다!");
+                window.location.reload();
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        });//버튼을 누르면 데이터베이스에 웹에서 입력한 텍스트가 저장됨
+
+
+        async function getdinner() {
+            const querySnapshot = await getDocs(collection(db2, "dinner"));
+            querySnapshot.forEach((doc) => {
+                let text = doc.data().text;
+                let tempHtml = `<input class="form-control" type="text" value="${text}" aria-label="readonly input example" readonly><button type="button" class="btn btn-danger" id="delete-dinner" data-id=${doc.id}> 삭제하기 </button>`
+                $(".dinner-getcontainer").append(tempHtml);
+            });
+        }//입력되있던 dinner 메뉴들을 불러옴
+
         document.addEventListener("DOMContentLoaded", () => {
             getMemberData(memberId);  // 나의memberId로 데이터 가져오기
             getanotherMemberData(); // 다른 멤버의 데이터를 가져와서 카드에 넣을 것
+            getdinner(); // 저녁메뉴 불러오기
         });
     </script>
 
@@ -285,6 +349,19 @@
             <div class="mystyle">사전캠프 기간때에 혼자 후쿠오카를 다녀왔습니다.</div>
             <div class="goal">저에게 큰 목표는 없지만, 당장의 목표는 프로젝트 무사히 끝내기입니다!!!</div>
         </div>
+    </div>
+
+    <div class=dinner-container>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">저녁 메뉴를 추천해주세요!</label>
+            <input type="email" class="form-control" id="input-dinner" placeholder="저녁 메뉴 입력하기">
+
+        </div>
+        <span class="button2">
+            <button type="button" class="btn btn-danger" id="input-dinnerBtn"> 추천하기 </button>
+        </span>
+        <div class="dinner-getcontainer"></div>
+
     </div>
 
 
