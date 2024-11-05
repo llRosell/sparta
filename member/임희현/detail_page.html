@@ -138,6 +138,32 @@
             background-color: bisque;
         }
     </style>
+    <script type="module">
+        // Firebase SDK import
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "introduce-ourselves.firebaseapp.com",
+            projectId: "introduce-ourselves",
+            storageBucket: "introduce-ourselves.appspot.com",
+            messagingSenderId: "510644864006",
+            appId: "1:510644864006:web:b252705d880832136c6f87",
+            measurementId: "G-SK0R8C7M9R"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const memberId = urlParams.get('id');
+        console.log(memberId);
+
+    </script>
+
 </head>
 
 <body>
@@ -146,26 +172,28 @@
 
     </header>
     <div class="main">
-        <div class ="imageblog"><div class="myimage">
-            <img src="image/KakaoTalk_20241021_144840718.jpg" height="300">
+        <div class="imageblog">
+            <div class="myimage">
+                <img src="image/KakaoTalk_20241021_144840718.jpg" height="300">
 
-        </div> 
-        <span class="blogbtn">
-            <button type="button" class="btn btn-outline-danger"
-                onclick="location.href='https://heehyun0221.tistory.com/'">블로그 가기</button>
-        </span></div>
-        
+            </div>
+            <span class="blogbtn">
+                <button type="button" class="btn btn-outline-danger"
+                    onclick="location.href='https://heehyun0221.tistory.com/'">블로그 가기</button>
+            </span>
+        </div>
+
         <div class="sogae">
             <div class="mystyle">제 mbti는 intp 입니다! </div>
             <div class="mystyle">저는 게임과 여행을 좋아합니다.</div>
             <div class="mystyle">사전캠프 기간때에 혼자 후쿠오카를 다녀왔습니다.</div>
             <div class="goal">저에게 큰 목표는 없지만, 당장의 목표는 프로젝트 무사히 끝내기입니다!!!</div>
         </div>
- </div>
+    </div>
 
-        
 
-   
+
+
 
     <div class="littletitle">다른 멤버 소개 보러가기</div>
     <div class="card-group">

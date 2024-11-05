@@ -13,7 +13,8 @@ body {
 }
 
 .container {
-    width: 800px;
+    width: 100%;
+    max-width: 1200px;
     background-color: #fff;
     padding: 20px;
     border: 1px solid #ddd;
@@ -22,7 +23,7 @@ body {
 
 header h1 {
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 20px;
 }
 
@@ -31,34 +32,38 @@ header h1 {
     margin-bottom: 30px;
 }
 
-.intro h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
 .member-cards {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
+    justify-content: space-around;
+    gap: 5px; /* 사진 간 간격을 줄입니다 */
+    flex-wrap: wrap;
 }
 
 .card {
-    width: 18%;
+    width: 200px; /* 사진의 너비를 더 넓힙니다 */
     text-align: center;
     cursor: pointer;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
+    background-color: #fafafa;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
 }
 
 .card img {
     width: 100%;
-    height: auto;
+    height: 200px; /* 높이를 더 키웁니다 */
+    object-fit: cover;
 }
 
 .card p {
     padding: 10px;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .guestbook {
@@ -74,10 +79,11 @@ header h1 {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    justify-content: center;
 }
 
 #guestbook-form input[type="text"] {
-    width: 40%;
+    width: 30%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -90,20 +96,19 @@ header h1 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#guestbook-form button:hover {
+    background-color: #0056b3;
 }
 
 .guestbook-messages .entry {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-}
-
-.guestbook-messages .entry p {
     font-size: 14px;
 }
 
-.member-cards img {
-    width: 150px; /* 원하는 너비 */
-    height: 200px; /* 원하는 높이 */
-    object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞춤 */
-    border-radius: 8px; /* 원하는 경우 둥근 모서리를 추가 */
+.guestbook-messages .entry p {
+    margin-bottom: 5px;
 }
