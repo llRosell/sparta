@@ -191,7 +191,7 @@
 
         // Firebase SDK import
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-        import { getFirestore, collection, doc, getDocs, getDoc, deleteDoc, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+        import { getFirestore, collection, doc, getDocs, getDoc, deleteDoc, addDoc,updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
         // Firebase configuration
         const firebaseConfig = {
@@ -264,7 +264,7 @@
                         img.alt = `${memberData.name}의 이미지`; // 이미지없을 경우 대체 텍스트 출력
                         img.className = 'card-img-top'; //카드 이미지 클래스 추가 > 스타일에서 수정 예정
                         img.onclick = () => {
-                            location.href = `../${memberData.name}/detail_page.html?id=${doc.id}`;//이미지 클릭 시 다른 멤버 상세 페이지로 이동
+                            location.href = `../${memberData.initials}/detail_page.html?id=${doc.id}`;//이미지 클릭 시 다른 멤버 상세 페이지로 이동
                         };
                         card.appendChild(img); //위에 만든 카드에 이미지를 추가함
 
@@ -325,10 +325,12 @@
                 let text = doc.data().text;
                 let reason = doc.data().reason;
                 let tempHtml = `<div class="row g-4"><div class="col-sm">
-    <input type="text" class="form-control" placeholder="Name" aria-label="음식명" value="${text}" readonly>
+    <input type="text" class="form-control" placeholder="Name" aria-label="음식명" value="${text}">
   </div><div class="col-sm-7">
-    <input type="text" class="form-control" placeholder="Reason" aria-label="추천이유" value="${reason}" readonly>
-  </div> <div class ="col-sm"><button type="button" class="btn btn-danger delete-dinner" data-id="${doc.id}"> 삭제하기 </button></div><div>`
+    <input type="text" class="form-control" placeholder="Reason" aria-label="추천이유" value="${reason}">
+  </div> <div class="col-sm">
+    <button type="button" class="btn btn-danger edit-dinner" data-id="${doc.id}"> 수정하기 </button> <!-- 수정 버튼 추가 -->
+</div><div class ="col-sm"><button type="button" class="btn btn-danger delete-dinner" data-id="${doc.id}"> 삭제하기 </button></div>`
                 $(".dinner-getcontainer").append(tempHtml);
                 console.log(doc.id);
             });
@@ -347,6 +349,32 @@
                 row.remove(); // UI에서 해당 행을 제거합니다
             } catch (error) {
                 console.error("Error removing document: ", error);
+            }
+        });
+
+        $(".dinner-getcontainer").on("click", ".edit-dinner", async function () {
+            const docId = $(this).data('id'); // 수정할 문서의 ID 가져오기
+            const newText = prompt("새로운 음식명을 입력하세요:");
+            const newReason = prompt("새로운 추천 이유를 입력하세요:");
+
+            if (newText && newReason) {
+                try {
+                    // Firestore 문서 참조
+                    const docRef = doc(db2, "dinner", docId);
+
+                    // 문서 업데이트
+                    await updateDoc(docRef, {
+                        text: newText,
+                        reason: newReason
+                    });
+
+                    alert("데이터가 성공적으로 수정되었습니다!");
+                    window.location.reload(); // 페이지 새로고침하여 변경 사항 반영
+                } catch (error) {
+                    console.error("Error updating document: ", error);
+                }
+            } else {
+                alert("음식명과 추천 이유를 모두 입력해야 합니다.");
             }
         });
 
