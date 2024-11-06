@@ -38,6 +38,11 @@
             </div>
         </section>
     </div>
+
+    <section class="go-home">
+        <button id="go-home-button">홈으로 가기</button>
+    </section>
+
 </body>
 
 <!-- Firebase 설정 및 스크립트 -->
@@ -207,6 +212,10 @@
     document.addEventListener('DOMContentLoaded', () => {
         loadMembers();
         loadGuestbookMessages();
+    });
+
+    document.getElementById('go-home-button').addEventListener('click', () => {
+        window.location.href = '../../../MiniProject_spart_1team.github.io/index.html'; // 지정한 경로로 이동
     });
 </script>
 
