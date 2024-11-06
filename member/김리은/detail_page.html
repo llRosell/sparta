@@ -84,10 +84,116 @@
   }
 
   .visitor {
-    height: 400px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .visitbox {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .visitor-title {
+    color: #fff;
+    text-align: center;å
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+
+  .guestbook-form {
+    margin-bottom: 20px;
+  }
+
+  .guestbook-form input,
+  .guestbook-form textarea {
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+  }
+
+  .guestbook-form input::placeholder,
+  .guestbook-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .guestbook-form button {
+    width: 100%;
+    background-color: #ff69b4;
+    border: none;
+  }
+
+  .guestbook-form button:hover {
+    background-color: #ff1493;
+  }
+
+  .guestbook-list {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .leftbox {
+    margin-right: 30px;
+  }
+
+  .message {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .actions {
+    margin-left: 20px;
+  }
+
+  .guestbook-entry {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
     width: 500px;
-    flex-direction: column;
-    margin: 10px auto;
+  }
+
+  .guestbook-entry p {
+    margin: 0;
+    color: #fff;
+  }
+
+  .guestbook-entry .writer {
+    font-weight: bold;
+    color: #ff69b4;
+  }
+
+  .guestbook-entry .date {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .guestbook-entry .content {
+    margin-top: 5px;
+  }
+
+  .guestbook-entry .actions {
+    margin-top: 10px;
+  }
+
+  .guestbook-entry .actions button {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    font-size: 0.8em;
+  }
+
+  .guestbook-entry .actions button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   a {
@@ -148,17 +254,31 @@
             </div>
 
             <div class="visitor">
-              <h1>방명록을 입력해주세요!!</h1>
-              <input type="text" id="writer" placeholder="작성자"><br>
-              <textarea id="writing" rows="4" cols="50" placeholder="내용을 입력하세요."></textarea><br>
-              <button id="okay">방명록 작성완료</button>
-              <div id="guestbook-entries"></div> <!-- 방명록 목록 표시 위치 -->
+              <!-- 이미지 섹션 -->
+              <div class="visitor-image me-4">
+                <img src="https://cdn.011st.com/11dims/resize/1000x1000/quality/75/11src/product/7288969799/B.jpg?247000000" alt="방명록" style="width: 300px; border-radius: 15px;">
+              </div>
+              
+              <!-- 방명록 폼 및 목록 -->
+              <div class="visitbox">
+                <div class="leftbox">
+                <h2 class="visitor-title">방명록을 남겨주세요!</h2>v
+                <div class="guestbook-form">
+                  <input type="text" id="writer" placeholder="작성자" class="form-control">
+                  <textarea id="writing" rows="4" placeholder="내용을 입력하세요." class="form-control"></textarea>
+                  <button id="okay" class="btn btn-primary">방명록 작성</button>
+                  </div>
+                </div>
+                <div id="guestbook-entries" class="guestbook-list"></div>
+              </div>
             </div>
 
+
+            
             <script type="module">
               import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-              import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-
+              import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+              
               const firebaseConfig = {
                 apiKey: "AIzaSyAcNxdfupglLDv1Z18wYRBn-AZelw8OhEk",
                 authDomain: "introduce-ourselves.firebaseapp.com",
@@ -225,34 +345,41 @@
                   try {
                     await addDoc(collection(db, "guestbook"), { writer, content, date });
                     alert("방명록이 작성되었습니다!");
-                    document.getElementById("writer").value = ""; // 입력 필드 초기화
-                    document.getElementById("writing").value = ""; // 입력 필드 초기화
-                    displayGuestbookEntries(); // 작성 후 방명록 목록 업데이트
+                    document.getElementById("writer").value = "";
+                    document.getElementById("writing").value = "";
+                    displayGuestbookEntries(); // 방명록 목록 새로고침
                   } catch (error) {
                     console.error("Error adding document: ", error);
                   }
                 } else {
                   alert("작성자와 내용을 입력하세요.");
                 }
-              };
+              }
+
 
               // Firestore에서 방명록 데이터 가져와 화면에 표시하기
               async function displayGuestbookEntries() {
                 const guestbookEntries = document.getElementById("guestbook-entries");
-                guestbookEntries.innerHTML = ""; // 기존 데이터 초기화
-
+                guestbookEntries.innerHTML = "";
                 try {
                   const querySnapshot = await getDocs(collection(db, "guestbook"));
                   querySnapshot.forEach((doc) => {
                     const data = doc.data();
                     const entry = document.createElement("div");
+                    entry.className = "guestbook-entry";
                     entry.innerHTML = `
-                  <p>
-                      <strong>${data.writer}</strong> (${data.date}): ${data.content}
+                    <div class="message">
+                    <p>
+                      <span class="writer">${data.writer}</span><br>
+                       <span class="date">${data.date}</span><br>
+                   </p>
+                    <p class="content">${data.content}</p>
+                    <div class="actions">
                       <button onclick="editEntry('${doc.id}', '${data.content}')">수정</button>
-                      <button onclick="deleteEntry('${doc.id}')">삭제</button>
-                  </p>
-              `;
+                        <button onclick="deleteEntry('${doc.id}')">삭제</button>
+                      </div>
+                      </div>
+                      `;
                     guestbookEntries.appendChild(entry);
                   });
                 } catch (error) {
@@ -267,30 +394,27 @@
                   try {
                     await deleteDoc(doc(db, "guestbook", id));
                     alert("방명록이 삭제되었습니다.");
-                    displayGuestbookEntries(); // 삭제 후 목록 업데이트
+                    displayGuestbookEntries();
                   } catch (error) {
                     console.error("Error deleting document: ", error);
                   }
                 }
-              };
-
+              }
               // 방명록 수정 기능
-              window.editEntry = function (id, currentContent) {
+              window.editEntry = async function (id, currentContent) {
                 const newContent = prompt("수정할 내용을 입력하세요:", currentContent);
                 if (newContent !== null && newContent !== "") {
-                  updateDoc(doc(db, "guestbook", id), { content: newContent })
-                    .then(() => {
-                      alert("방명록이 수정되었습니다.");
-                      displayGuestbookEntries(); // 수정 후 목록 업데이트
-                    })
-                    .catch((error) => {
-                      console.error("Error updating document: ", error);
-                    });
+                  try {
+                    const docRef = doc(db, "guestbook", id);
+                    await updateDoc(doc(db, "guestbook", id), { content: newContent });
+                    alert("방명록이 수정되었습니다.");
+                    displayGuestbookEntries(); // 방명록 목록 새로고침
+                  } catch (error) {
+                    console.error("Error updating document: ", error);
+                  }
                 }
-              };
+              }
 
-              // 페이지 로드 시 방명록 데이터 표시
-              document.addEventListener('DOMContentLoaded', displayGuestbookEntries);
             </script>
 </body>
 
