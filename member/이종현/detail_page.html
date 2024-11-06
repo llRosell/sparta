@@ -176,9 +176,7 @@
                     if (memberSnap.exists()) {
                         const memberData = memberSnap.data();
                         document.title = `${memberData.name}(${memberData.mbti})`;
-                        document.getElementById("myname").textContent = `${memberData.brief}`;
-                        document.getElementById("mymbti").textContent = `${memberData.name}(${memberData.mbti}) : ${memberData.tmi}`;
-                        document.getElementById("mysogae").textContent = memberData.introduction;
+                       
 
                         const blogButton = document.getElementById("blogBtn");
 
