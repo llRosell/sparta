@@ -30,6 +30,7 @@
             background-size: cover;
         }
 
+
         .img {
             width: 230px;
             height: 230px;
@@ -37,6 +38,15 @@
             object-fit: cover;
 
         }
+
+        .home {
+            font-size: 25px;
+            margin: 0;
+            margin-top: 10px;
+        }
+
+
+
         .sogae {
             margin-left:20%;
             margin-top:1%;
@@ -240,6 +250,10 @@
         loadMemberDetail();
         loadTeamMembers();
 
+        document.getElementById('homeBtn').addEventListener('click', function() {
+            window.location.href = '../../../MiniProject_spart_1team.github.io/index.html';
+        });
+
 
 
 
@@ -249,9 +263,13 @@
 <body>
 <div claas="col-1">
     <div class="name">
+
         <h1 class="display-5" style="font-family: 'Black Han Sans', sans-serif; "id="myname">Spring4기 1조 이종현</h1>
         <p style="text-align: center" id="mymbti">MBTI : INTP</p>
         <button type="button" class="btn btn-dark" id="blogBtn">블로그</button>
+        <div class="home">
+        <a href="../../../MiniProject_spart_1team.github.io/index.html" class="nav-link p-0 text-body-secondary">Home</a>
+    </div>
     </div>
     <div class="sogae" id="mysogae">
         <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtRiz4%2FbtsKwqTCpAR%2F8aVmUM4kNVJXA2KWTjDfM0%2Fimg.jpg"
