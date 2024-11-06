@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&display=swap');
+
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+
+
+        .name {
+            height: 300px;
+            color: white;
+            font-size: 20px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            background-image: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FCG3vz%2FbtsKvcPL8xB%2FkwbqaJtRZQhQAD4fd84gS1%2Fimg.png');
+            background-position: top;
+            background-size: cover;
+        }
+
+
+        .img {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            object-fit: cover;
+
+        }
+
+        .home {
+            font-size: 25px;
+            margin: 0;
+            margin-top: 10px;
+        }
+
+
+
+        .sogae {
+            margin-left:20%;
+            margin-top:1%;
+
+
+        }
+        .sogae2 {
+            margin-top: -7%;
+
+        }
+
+        img {float: left;}
+
+        .name1 {
+            margin-left:3%;
+            font-size: 30px;
+            clear: both;
+
+
+        }
+
+        .name2 {
+
+            font-size: 20px;
+            clear: both;
+        }
+
+        .name3 {
+            font-size: 25px;
+            margin-left:35%;
+        }
+        .name4 {
+            font-size: 23px;
+            margin-left:15%;
+        }
+
+        .name5{
+            font-size: 23px;
+            margin-left:15%;
+        }
+
+        .name6{
+            font-size: 25px;
+            margin-left:37.5%;
+        }
+
+        .name7{
+            font-size: 23px;
+            margin-left:15%;
+        }
+
+        .name8{
+            font-size: 23px;
+            margin-left:15%;
+        }
+
+        .name9{
+            font-size: 25px;
+            margin-left:36%;
+        }
+
+        .name10{
+            font-size: 23px;
+            margin-left:15%
+        }
+
+        .teamsogae{
+            font-size: 25px;
+            text-align: center;
+            margin-right: -2000px;
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+
+
+        .member img {
+            width: 100%;
+            height: 150px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 40px;
+            background: #ccc;
+        }
+
+        .member p {
+            text-align: center;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcNxdfupglLDv1Z18wYRBn-AZelw8OhEk",
+            authDomain: "introduce-ourselves.firebaseapp.com",
+            projectId: "introduce-ourselves",
+            storageBucket: "introduce-ourselves.firebasestorage.app",
+            messagingSenderId: "510644864006",
+            appId: "1:510644864006:web:b252705d880832136c6f87",
+            measurementId: "G-SK0R8C7M9R"
+        };
+
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        async function loadMemberDetail() {
+            if (id) {
+                try {
+                    const memberRef = doc(db, 'members', id);
+                    const memberSnap = await getDoc(memberRef);
+
+                    if (memberSnap.exists()) {
+                        const memberData = memberSnap.data();
+                        document.title = `${memberData.name}(${memberData.mbti})`;
+
+
+                        const blogButton = document.getElementById("blogBtn");
+
+                        // 블로그 URL 확인 후 처리
+                        if (memberData.blog_url) {
+                            blogButton.onclick = () => window.location.href = memberData.blog_url;
+                        } else {
+                            blogButton.disabled = true;  // 블로그 URL이 없으면 버튼 비활성화
+                            console.log("블로그 URL이 없습니다.");
+                        }
+
+                        if (memberData.image_url) {
+                            const imageContainer = document.getElementById("member-image");
+                            imageContainer.innerHTML = `<img src="${memberData.image_url}" alt="${memberData.name}의 사진">`;
+                        }
+                    } else {
+                        document.getElementById("member-description").textContent = "해당 멤버 정보를 찾을 수 없습니다.";
+                    }
+                } catch (error) {
+                    console.error("Error loading member detail:", error);
+                }
+            } else {
+                console.log("ID가 전달되지 않았습니다.");
+            }
+        }
+
+        async function loadTeamMembers() {
+            try {
+                const teamMembersContainer = document.getElementById("team-members");
+                const querySnapshot = await getDocs(collection(db, 'members'));
+
+                querySnapshot.forEach((doc) => {
+                    const memberId = doc.id;
+                    const member = doc.data();
+
+                    if (member.name === "이종현") return;
+
+                    // 멤버 카드를 생성하여 team-members 컨테이너에 추가
+                    const memberDiv = document.createElement('div');
+                    memberDiv.onclick = () => window.location.href = `../../member/${member.initials}/detail_page.html?id=${doc.id}`;
+                    memberDiv.classList.add('member');
+                    memberDiv.style.cursor = 'pointer';
+
+
+
+
+
+                    memberDiv.innerHTML = `
+                    <img src="${member.image_url || '#'}" alt="${member.name}의 사진">
+                    <p>${member.name}</p>
+                `;
+
+                    teamMembersContainer.appendChild(memberDiv);
+                });
+            } catch (error) {
+                console.error("Error loading team members:", error);
+            }
+        }
+
+        loadMemberDetail();
+        loadTeamMembers();
+
+        document.getElementById('homeBtn').addEventListener('click', function() {
+            window.location.href = '../../../MiniProject_spart_1team.github.io/index.html';
+        });
+
+
+
+
+    </script>
+
+</head>
+<body>
+<div claas="col-1">
+    <div class="name">
+
+        <h1 class="display-5" style="font-family: 'Black Han Sans', sans-serif; "id="myname">Spring4기 1조 이종현</h1>
+        <p style="text-align: center" id="mymbti">MBTI : INTP</p>
+        <button type="button" class="btn btn-dark" id="blogBtn">블로그</button>
+        <div class="home">
+        <a href="../../../MiniProject_spart_1team.github.io/index.html" class="nav-link p-0 text-body-secondary">Home</a>
+    </div>
+    </div>
+    <div class="sogae" id="mysogae">
+        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FtRiz4%2FbtsKwqTCpAR%2F8aVmUM4kNVJXA2KWTjDfM0%2Fimg.jpg"
+             alt="동그란 이미지" class="img">
+
+        <p class="name3 fw-bold"> -나의 MBTI 및 성격-<br> </p>
+        <p class="name4">저의 MBTI는 INTP입니다. INTP은 남에게 관심이 별로없다고 합니다 하지만 자기가 잘하는 것과 좋아하는 것을 하면</p>
+        <p class="name5"> 한 없이 몰두하고 열심히 한다고 합니다.</p>
+        <p class="name6 fw-bold"> -나의 장점-<br> </p>
+        <p class="name7">내성 적인 성격 덕에 트러블이 적은 편입니다. 그리고 잘 모르는 것이 있으면 어떻게든 찾아낼라고 노력합니다.</p>
+        <p class="name8"> 그리고 항상 어떠한 문제든 논리적으로 해결을 하려 합니다.</p>
+        <p class="name9 fw-bold"> -나의 협업스타일-</p>
+        <p class="name10">다른 사람의 말을 잘 경청하고 내게 주어진 것들을 착실히 합니다. 또한 좋은 의견이라 생각하면 의견을 제시하는 편입니다.</p>
+        <div class="sogae2">
+            <p class="name1 fw-bold" >이 종 현</p>
+            <div class="name2 fw-bold">
+                <p> Spring 4기 1조 이종현 입니다.<br> 코딩 너무 어려운 것 같습니다..<br> 그래도 열심히 하겠습니다!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="line">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+        <div class="col mb-3">
+            <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+            </a>
+            <div class="teamsogae">
+                <p>다른 팀원 보러가기</p>
+            </div>
+
+        </div>
+    </footer>
+</div>
+<section class="team-member-section">
+    <div class="team-members" id="team-members">
+        <!-- 팀원이 동적으로 추가됩니다 -->
+    </div>
+</section>
+
+
+
+
+
+</body>
+</html>
