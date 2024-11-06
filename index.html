@@ -38,6 +38,11 @@
             </div>
         </section>
     </div>
+
+    <section class="go-home">
+        <button id="go-home-button">홈으로 가기</button>
+    </section>
+
 </body>
 
 <!-- Firebase 설정 및 스크립트 -->
@@ -94,7 +99,7 @@
                 // console.log(member);
                 // console.log(doc.id);
                 const card = document.createElement('div');
-                card.onclick = () => window.location.href = `member/${member.name}/detail_page.html?id=${doc.id}`;
+                card.onclick = () => window.location.href = `member/${member.initials}/detail_page.html?id=${doc.id}`;
                 card.className = 'card';
                 card.innerHTML = `
                     <img src="${member.image_url}" alt="${member.name} Photo">
@@ -207,6 +212,10 @@
     document.addEventListener('DOMContentLoaded', () => {
         loadMembers();
         loadGuestbookMessages();
+    });
+
+    document.getElementById('go-home-button').addEventListener('click', () => {
+        window.location.href = '../../../MiniProject_spart_1team.github.io/index.html'; // 지정한 경로로 이동
     });
 </script>
 

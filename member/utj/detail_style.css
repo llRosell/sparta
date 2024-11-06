@@ -126,3 +126,40 @@ body {
     font-size: 0.9em;
     color: #666;
 }
+
+/* go-home btn */
+.go-home {
+    display: flex; /* flexbox를 사용하여 정렬 */
+    justify-content: center; /* 가로로 가운데 정렬 */
+    align-items: center; /* 세로로 가운데 정렬 */
+    height: 100px; /* 버튼 영역의 높이 */
+    margin-top: 20px; /* 버튼 위쪽 여백 추가 */
+}
+
+/* 버튼 기본 색상 및 크기 조정 */
+.go-home button {
+    background-color: #ccc; /* 기본 배경을 #ccc로 설정 */
+    color: #333; /* 어두운 텍스트 색상 */
+    padding: 20px 80px; /* 버튼 크기 조정 (상하, 좌우 여백) */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px; /* 폰트 크기 조정 */
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* 버튼에 마우스를 올렸을 때 */
+.go-home button:hover {
+    background-color: #bbb; /* 호버 시 조금 더 어두운 색 */
+    transform: scale(1.1); /* 버튼 크기 커짐 */
+}
+
+/* 버튼 클릭 시 */
+.go-home button:active {
+    background-color: #aaa; /* 클릭 시 더 어두운 색 */
+    transform: scale(1); /* 버튼 크기 원상 복귀 */
+}

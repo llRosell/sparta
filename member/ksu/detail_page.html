@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>팀원(MBTI)</title>
+    <title></title>
     <link rel="stylesheet" href="detail_style.css">
 </head>
 
@@ -12,7 +12,6 @@
 
     <div class="container">
         <h1 id="member-name">팀원 이름 (MBTI)</h1>
-
         <section class="intro-section">
             <div class="intro-text">
                 <h2 id="brief">저에 대해 소개합니다!</h2>
@@ -53,7 +52,6 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
 
@@ -68,6 +66,7 @@
                     document.title = `${memberData.name}(${memberData.mbti})`;
                     document.getElementById("brief").textContent = `${memberData.brief}`;
                     document.getElementById("member-name").textContent = `${memberData.name}(${memberData.mbti}) : ${memberData.tmi}`;
+                    document.getElementById("member-name").href = `${memberData.blog_url}`;
                     document.getElementById("member-description").textContent = memberData.introduction;
 
                     if (memberData.image_url) {
@@ -98,7 +97,7 @@
                 
                 // 멤버 카드를 생성하여 team-members 컨테이너에 추가
                 const memberDiv = document.createElement('div');
-                memberDiv.onclick = () => window.location.href = `../../member/${member.name}/detail_page.html?id=${doc.id}`;
+                memberDiv.onclick = () => window.location.href = `../../member/${member.initials}/detail_page.html?id=${doc.id}`;
                 memberDiv.classList.add('member');
                 memberDiv.style.cursor = 'pointer';
                 
