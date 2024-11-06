@@ -99,7 +99,7 @@
                 // console.log(member);
                 // console.log(doc.id);
                 const card = document.createElement('div');
-                card.onclick = () => window.location.href = `member/${member.name}/detail_page.html?id=${doc.id}`;
+                card.onclick = () => window.location.href = `member/${member.initials}/detail_page.html?id=${doc.id}`;
                 card.className = 'card';
                 card.innerHTML = `
                     <img src="${member.image_url}" alt="${member.name} Photo">
