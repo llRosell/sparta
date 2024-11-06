@@ -51,7 +51,7 @@
         img {float: left;}
 
        .name1 {
-           margin-left:3.5%;
+           margin-left:3%;
            font-size: 30px;
            clear: both;
 
@@ -66,7 +66,7 @@
 
        .name3 {
            font-size: 25px;
-           margin-left:40%;
+           margin-left:35%;
        }
        .name4 {
            font-size: 23px;
@@ -80,7 +80,7 @@
 
        .name6{
            font-size: 25px;
-           margin-left:42%;
+           margin-left:37.5%;
        }
 
        .name7{
@@ -95,7 +95,7 @@
 
        .name9{
            font-size: 25px;
-           margin-left:40.5%;
+           margin-left:36%;
        }
 
        .name10{
@@ -120,8 +120,9 @@
         .member img {
             width: 100%;
             height: 150px;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 40px;
             background: #ccc;
         }
 
@@ -176,7 +177,7 @@
                     if (memberSnap.exists()) {
                         const memberData = memberSnap.data();
                         document.title = `${memberData.name}(${memberData.mbti})`;
-                       
+
 
                         const blogButton = document.getElementById("blogBtn");
 
@@ -216,7 +217,7 @@
 
                     // 멤버 카드를 생성하여 team-members 컨테이너에 추가
                     const memberDiv = document.createElement('div');
-                    memberDiv.onclick = () => window.location.href = `../../member/${member.name}/detail_page.html?id=${doc.id}`;
+                    memberDiv.onclick = () => window.location.href = `../../member/${member.initials}/detail_page.html?id=${doc.id}`;
                     memberDiv.classList.add('member');
                     memberDiv.style.cursor = 'pointer';
 
@@ -274,13 +275,14 @@
 </div>
 
 
+
 <div class="line">
     <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
         <div class="col mb-3">
             <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
             </a>
             <div class="teamsogae">
-                <p>팀원 소개하기</p>
+                <p>다른 팀원 보러가기</p>
             </div>
 
         </div>
