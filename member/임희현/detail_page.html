@@ -167,18 +167,23 @@
             padding: 100px, 100px;
         }
 
-        .mb-3 {
-            float: left;
-            width: 50%;
-            margin: 0 auto;
-
-        }
-
         .button2 {
             float: left;
-            width: 10%;
-            margin-left: 30px;
-            margin-top: 32px;
+            width: 160px;
+            margin-left: 10px;
+            margin-top: 25px;
+        }
+
+        .dinner-getcontainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .container008 {
+            margin-top: 20px;
+            height: auto;
         }
     </style>
     <script type="module">
@@ -295,9 +300,11 @@
 
         $("#input-dinnerBtn").click(async function () {
             let text = $('#input-dinner').val();
+            let text2 = $('#input-reason').val();
             console.log(text);
             let doc = {
-                'text': text
+                'text': text,
+                'reason': text2
             };
 
             try {
@@ -313,12 +320,36 @@
 
         async function getdinner() {
             const querySnapshot = await getDocs(collection(db2, "dinner"));
+            $(".dinner-getcontainer").empty();
             querySnapshot.forEach((doc) => {
                 let text = doc.data().text;
-                let tempHtml = `<input class="form-control" type="text" value="${text}" aria-label="readonly input example" readonly><button type="button" class="btn btn-danger" id="delete-dinner" data-id=${doc.id}> 삭제하기 </button>`
+                let reason = doc.data().reason;
+                let tempHtml = `<div class="row g-4"><div class="col-sm">
+    <input type="text" class="form-control" placeholder="Name" aria-label="음식명" value="${text}" readonly>
+  </div><div class="col-sm-7">
+    <input type="text" class="form-control" placeholder="Reason" aria-label="추천이유" value="${reason}" readonly>
+  </div> <div class ="col-sm"><button type="button" class="btn btn-danger delete-dinner" data-id="${doc.id}"> 삭제하기 </button></div><div>`
                 $(".dinner-getcontainer").append(tempHtml);
+                console.log(doc.id);
             });
+
         }//입력되있던 dinner 메뉴들을 불러옴
+
+        $(".dinner-getcontainer").on("click", ".delete-dinner", async function () {
+            const row = $(this).closest('.row');
+            console.log(row);
+            const docId = $(this).data('id');
+            console.log(docId);
+
+            try {
+                await deleteDoc(doc(db2, "dinner", docId));
+                console.log("Document successfully deleted!");
+                row.remove(); // UI에서 해당 행을 제거합니다
+            } catch (error) {
+                console.error("Error removing document: ", error);
+            }
+        });
+
 
         document.addEventListener("DOMContentLoaded", () => {
             getMemberData(memberId);  // 나의memberId로 데이터 가져오기
@@ -352,23 +383,30 @@
     </div>
 
     <div class=dinner-container>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">저녁 메뉴를 추천해주세요!</label>
-            <input type="email" class="form-control" id="input-dinner" placeholder="저녁 메뉴 입력하기">
+
+        <div class="row g-4">
+            <div class="col-sm">
+                <input type="text" class="form-control" id="input-dinner" placeholder="Name" aria-label="음식명">
+            </div>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" id="input-reason" placeholder="Reason" aria-label="추천이유">
+            </div>
+
+            <div class="button2">
+                <button type="button" class="btn btn-danger" id="input-dinnerBtn"> 추천하기 </button>
+            </div>
+        </div>
+        <div class="container008">
+            <div class="dinner-getcontainer"></div>
 
         </div>
-        <span class="button2">
-            <button type="button" class="btn btn-danger" id="input-dinnerBtn"> 추천하기 </button>
-        </span>
-        <div class="dinner-getcontainer"></div>
-
-    </div>
 
 
-    <div class="littletitle">다른 멤버 소개 보러가기</div>
-    <div class="container mt-4">
-        <div class="card-container" id="anotherMemberContainer"></div>
-    </div>
+
+        <div class="littletitle">다른 멤버 소개 보러가기</div>
+        <div class="container mt-4">
+            <div class="card-container" id="anotherMemberContainer"></div>
+        </div>
 </body>
 
 </html>
