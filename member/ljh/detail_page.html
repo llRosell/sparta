@@ -8,7 +8,199 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="detail_style.css">
 
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, getDoc, addDoc, deleteDoc, updateDoc, } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcNxdfupglLDv1Z18wYRBn-AZelw8OhEk",
+            authDomain: "introduce-ourselves.firebaseapp.com",
+            projectId: "introduce-ourselves",
+            storageBucket: "introduce-ourselves.firebasestorage.app",
+            messagingSenderId: "510644864006",
+            appId: "1:510644864006:web:b252705d880832136c6f87",
+            measurementId: "G-SK0R8C7M9R"
+        };
+
+        const firebaseConfig2 = {
+            apiKey: "AIzaSyA1dWGt5syRV8TVidWQa4l8CnjqRr8Dc1s",
+            authDomain: "sparta-6bf7e.firebaseapp.com",
+            projectId: "sparta-6bf7e",
+            storageBucket: "sparta-6bf7e.firebasestorage.app",
+            messagingSenderId: "534699056839",
+            appId: "1:534699056839:web:892a9278e38011918268e2",
+            measurementId: "G-KSZ24M0TX5"
+        };
+
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const app2 = initializeApp(firebaseConfig2, "secondary");
+        const db2 = getFirestore(app2);
+
+        window.addEntry = async function() {
+            const nickname = document.getElementById('nickname').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (nickname && message) {
+                try {
+                    await addDoc(collection(db2, "guestbook"), { nickname, message, timestamp: new Date() });
+                    alert("방명록이 성공적으로 등록되었습니다.");
+                    window.renderGuestbook(); // 방명록 다시 렌더링
+                } catch (error) {
+                    console.error("방명록 등록 오류:", error);
+                }
+                document.getElementById('nickname').value = '';
+                document.getElementById('message').value = '';
+            } else {
+                alert("이름과 댓글을 모두 입력해주세요.");
+            }
+        };
+
+        window.renderGuestbook = async function() {
+            const guestbookList = document.getElementById('guestbookList');
+            guestbookList.innerHTML = '';
+            try {
+                const querySnapshot = await getDocs(collection(db2, "guestbook"));
+                querySnapshot.forEach((doc) => {
+                    const entry = doc.data();
+                    const li = document.createElement('li');
+                    li.className = 'guestbook-item';
+                    li.innerHTML = `
+                        <strong>${entry.nickname}</strong>
+                        <small>${new Date(entry.timestamp.seconds * 1000).toLocaleString()}</small>
+                        <p>${entry.message}</p>
+                        <div class='guestbook-actions'>
+                            <button onclick="editEntry('${doc.id}', '${entry.message}')">수정</button>
+                            <button onclick="deleteEntry('${doc.id}')">삭제</button>
+                        </div>`;
+                    guestbookList.appendChild(li);
+                });
+            } catch (error) {
+                console.error("방명록 불러오기 오류:", error);
+            }
+        };
+
+        window.editEntry = async function(id, currentMessage) {
+            const newMessage = prompt("수정할 댓글 내용을 입력하세요:", currentMessage);
+            if (newMessage && newMessage.trim()) {
+                try {
+                    await updateDoc(doc(db2, "guestbook", id), { message: newMessage.trim() });
+                    alert("방명록이 성공적으로 수정되었습니다.");
+                    window.renderGuestbook();
+                } catch (error) {
+                    console.error("방명록 수정 오류:", error);
+                }
+            } else {
+                alert("댓글 내용이 비어있습니다.");
+            }
+        };
+
+        window.deleteEntry = async function(id) {
+            if (confirm("정말로 삭제하시겠습니까?")) {
+                try {
+                    await deleteDoc(doc(db2, "guestbook", id));
+                    alert("방명록 항목이 삭제되었습니다.");
+                    window.renderGuestbook();
+                } catch (error) {
+                    console.error("방명록 삭제 오류:", error);
+                }
+            }
+        };
+
+        window.onload = function() {
+            window.renderGuestbook();
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        async function loadMemberDetail() {
+            if (id) {
+                try {
+                    const memberRef = doc(db, 'members', id);
+                    const memberSnap = await getDoc(memberRef);
+
+                    if (memberSnap.exists()) {
+                        const memberData = memberSnap.data();
+                        document.title = `${memberData.name}(${memberData.mbti})`;
+
+
+                        const blogButton = document.getElementById("blogBtn");
+
+                        // 블로그 URL 확인 후 처리
+                        if (memberData.blog_url) {
+                            blogButton.onclick = () => window.location.href = memberData.blog_url;
+                        } else {
+                            blogButton.disabled = true;  // 블로그 URL이 없으면 버튼 비활성화
+                            console.log("블로그 URL이 없습니다.");
+                        }
+
+                        if (memberData.image_url) {
+                            const imageContainer = document.getElementById("member-image");
+                            imageContainer.innerHTML = `<img src="${memberData.image_url}" alt="${memberData.name}의 사진">`;
+                        }
+                    } else {
+                        document.getElementById("member-description").textContent = "해당 멤버 정보를 찾을 수 없습니다.";
+                    }
+                } catch (error) {
+                    console.error("Error loading member detail:", error);
+                }
+            } else {
+                console.log("ID가 전달되지 않았습니다.");
+            }
+        }
+
+        async function loadTeamMembers() {
+            try {
+                const teamMembersContainer = document.getElementById("team-members");
+                const querySnapshot = await getDocs(collection(db, 'members'));
+
+                querySnapshot.forEach((doc) => {
+                    const memberId = doc.id;
+                    const member = doc.data();
+
+                    if (member.name === "이종현") return;
+
+                    // 멤버 카드를 생성하여 team-members 컨테이너에 추가
+                    const memberDiv = document.createElement('div');
+                    memberDiv.onclick = () => window.location.href = `../../member/${member.initials}/detail_page.html?id=${doc.id}`;
+                    memberDiv.classList.add('member');
+                    memberDiv.style.cursor = 'pointer';
+
+
+
+
+
+                    memberDiv.innerHTML = `
+                    <img src="${member.image_url || '#'}" alt="${member.name}의 사진">
+                    <p>${member.name}</p>
+                `;
+
+                    teamMembersContainer.appendChild(memberDiv);
+                });
+            } catch (error) {
+                console.error("Error loading team members:", error);
+            }
+        }
+
+        loadMemberDetail();
+        loadTeamMembers();
+
+        document.getElementById('homebtn').addEventListener('click', function() {
+            window.location.href = '../../../MiniProject_spart_1team.github.io/index.html';
+        });
+
+
+
+
+
+
+    </script>
 
 
 
@@ -63,6 +255,7 @@
 </div>
 <section class="team-member-section">
     <div class="team-members" id="team-members">
+        <img class="member-image" id="member-image">
         <!-- 팀원이 동적으로 추가됩니다 -->
     </div>
 </section>
@@ -70,13 +263,12 @@
 <div class="guestbook-form">
     <input type="text" id="nickname" placeholder="이름을 입력하세요" />
     <textarea id="message" rows="4" placeholder="댓글을 입력해주세요"></textarea>
-    <button id="addEntryButton">등록</button>
+    <button onclick="addEntry()">등록</button>
 </div>
 
 <ul id="guestbookList" class="guestbook-list"></ul>
 
-<!-- main.js 포함 -->
-<script type="module" src="./main.js"></script>
+
 
 
 
