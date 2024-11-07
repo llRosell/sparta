@@ -130,6 +130,33 @@
             margin-top: 25px;
         }
 
+        #anotherMemberContainer {
+            display: flex; /* Flexbox 사용 */
+            justify-content: space-around; /* 이미지 간의 간격 균등하게 */
+            flex-wrap: nowrap; /* 한 줄에 배치 */
+        }
+
+        .card {
+            flex: 1 0 auto;
+            max-width: 150px; /* 카드의 최대 너비 설정 */
+        }
+
+        .card-body {
+            text-align: left; /* 텍스트 정렬 */
+            width: 100%; /* 카드 너비에 맞추기 */
+        }
+
+        .card-text {
+            word-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 처리 */
+            overflow-wrap: break-word; /* 텍스트가 넘칠 경우 줄바꿈 처리 */
+        }
+
+        .card-img-top {
+            width: 100%; /* 이미지 너비를 부모 요소에 맞춤 */
+            height: auto; /* 이미지 높이를 비율에 맞게 자동 조정 */
+            max-width: 150px; /* 최대 너비 설정 (필요에 따라 조정 가능) */
+        }
+
         .dinner-getcontainer {
             display: flex;
             flex-direction: column;
