@@ -132,29 +132,34 @@
 
         #anotherMemberContainer {
             display: flex; /* Flexbox 사용 */
-            justify-content: space-around; /* 이미지 간의 간격 균등하게 */
+            justify-content: space-between; /* 카드 간의 공간 균등 분배 */
+            align-items: stretch; /* 카드 높이를 동일하게 맞춤 */
             flex-wrap: nowrap; /* 한 줄에 배치 */
+            gap: 5px; /* 카드 간의 간격을 5px로 설정 */
         }
 
         .card {
-            flex: 1 0 auto;
-            max-width: 150px; /* 카드의 최대 너비 설정 */
+            flex: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 카드에 그림자 효과 추가 */
+            border-radius: 8px; /* 모서리를 둥글게 설정 */
+            overflow: hidden; /* 내용이 넘칠 경우 숨김 */
+            transition: transform 0.2s; /* 마우스 오버 시 애니메이션 효과 */
         }
 
-        .card-body {
-            text-align: left; /* 텍스트 정렬 */
-            width: 100%; /* 카드 너비에 맞추기 */
+        .card:hover {
+            transform: scale(1.05); /* 마우스 오버 시 확대 효과 */
         }
+
+        .card-img-top {
+            width: 100%; /* 이미지가 카드 너비에 맞도록 설정 */
+            height: auto; /* 이미지 비율 유지 */
+        }
+
+
 
         .card-text {
             word-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 처리 */
             overflow-wrap: break-word; /* 텍스트가 넘칠 경우 줄바꿈 처리 */
-        }
-
-        .card-img-top {
-            width: 100%; /* 이미지 너비를 부모 요소에 맞춤 */
-            height: auto; /* 이미지 높이를 비율에 맞게 자동 조정 */
-            max-width: 150px; /* 최대 너비 설정 (필요에 따라 조정 가능) */
         }
 
         .dinner-getcontainer {
@@ -241,56 +246,45 @@
         }
 
         async function getanotherMemberData() {
-            const membersRef = collection(db, 'members'); // members 컬렉션 가져옴
+            const membersRef = collection(db, 'members');
             try {
-                const querySnapshot = await getDocs(membersRef); // 아까랑 달리 모든 멤버 문서 가져옴
-                const anotherMemberContainer = document.getElementById("anotherMemberContainer"); // 카드가 추가될 컨테이너 가져옴
-
+                const querySnapshot = await getDocs(membersRef);
+                const anotherMemberContainer = document.getElementById("anotherMemberContainer");
                 querySnapshot.forEach((doc) => {
-                    const memberData = doc.data(); // 데이터 가져오기
-                    if (doc.id != memberId) {
-                        // 카드 생성
+                    const memberData = doc.data();
+                    if (doc.id !== memberId) {
                         const card = document.createElement('div');
-                        card.className = 'card'; // 카드 클래스 추가 > 스타일에서 수정 예정
+                        card.className = 'card';
 
-                        // 카드에 이미지 추가
                         const img = document.createElement('img');
-                        img.src = memberData.image_url; // 데이터베이스에서 가져온 image_url 사용
-                        img.alt = `${memberData.name}의 이미지`; // 이미지없을 경우 대체 텍스트 출력
-                        img.className = 'card-img-top'; //카드 이미지 클래스 추가 > 스타일에서 수정 예정
+                        img.src = memberData.image_url;
+                        img.alt = `${memberData.name}의 이미지`;
+                        img.className = 'card-img-top';
                         img.onclick = () => {
-                            location.href = `../${memberData.initials}/detail_page.html?id=${doc.id}`;//이미지 클릭 시 다른 멤버 상세 페이지로 이동
+                            location.href = `../${memberData.initials}/detail_page.html?id=${doc.id}`;
                         };
-                        card.appendChild(img); //위에 만든 카드에 이미지를 추가함
+                        card.appendChild(img);
 
-                        // 카드 바디 추가
-                        const cardBody = document.createElement('div'); //설명이랑 제목 넣을 부분 텍스트, 데이터베이스에서 name, tmi 사용
-                        cardBody.className = 'card-body'; // 카드바디 클래스 추가 > 스타일에서 수정 예정
+                        const cardBody = document.createElement('div');
+                        cardBody.className = 'card-body';
 
-                        // 카드 제목 추가
-                        const name = document.createElement('h5'); //이름 들어갈 부분
-                        name.className = 'card-name'; //이름 들어갈 부분 클래스 > 스타일에서 폰트 따로 설정 해줘야 되는지?
+                        const name = document.createElement('h5');
+                        name.className = 'card-title';
                         name.innerText = memberData.name || "이름 없음";
-                        cardBody.appendChild(name); // 카드 바디에 이름 추가
+                        cardBody.appendChild(name);
 
-                        // 카드 텍스트 추가
-                        const tmi = document.createElement('p'); //tmi 추가할 부분
-                        tmi.className = 'card-text'; // tmi 스타일 조정 부분
-                        tmi.innerText = memberData.tmi || "정보 없음"; // tmi 내용 가져옴
-                        cardBody.appendChild(tmi); // 카드 바디에 tmi 추가 , 이름 뒤에 와야함
+                        const tmi = document.createElement('p');
+                        tmi.className = 'card-text';
+                        tmi.innerText = memberData.tmi || "정보 없음";
+                        cardBody.appendChild(tmi);
 
-
-                        card.appendChild(cardBody); // 카드 바디를 카드에 추가
-
-                        anotherMemberContainer.appendChild(card); // 카드 추가
+                        card.appendChild(cardBody);
+                        anotherMemberContainer.appendChild(card);
                     }
-
-
                 });
             } catch (error) {
-                console.error("Error getting documents:", error); // 오류 처리
+                console.error("Error getting documents:", error);
             }
-
         }
 
         $("#input-dinnerBtn").click(async function () {
@@ -446,7 +440,7 @@
 
         <div class="littletitle">다른 멤버 소개 보러가기</div>
         <div class="container mt-4">
-            <div class="card-container" id="anotherMemberContainer"></div>
+            <div class="card-group" id="anotherMemberContainer"></div>
         </div>
 
 
