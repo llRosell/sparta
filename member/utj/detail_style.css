@@ -63,7 +63,7 @@ body {
 /* 방명록 섹션 스타일 */
 .guestbook-section {
     background-color: #fafafa;
-    padding: 30px;
+    padding: 10px;
     border-radius: 12px;
     max-width: 1200px;
     margin: 40px auto;
@@ -164,6 +164,7 @@ body {
     max-width: 70%;
     flex: 3;
     min-width: 200px;
+    text-align: left;
 }
 
 /* 작성 일시 스타일 */
