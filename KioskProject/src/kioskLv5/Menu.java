@@ -12,6 +12,7 @@ class Menu {
     // 생성자: 메뉴 이름에 따라 카테고리별 메뉴 항목을 초기화
     public Menu(String name) {
         this.name = name;
+
         if ("Burgers".equals(name)) {
             // 'Burgers' 카테고리에는 여러 버거 메뉴 항목을 추가
             menuItems.add(new MenuItem("ShackBurger", 6900, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
