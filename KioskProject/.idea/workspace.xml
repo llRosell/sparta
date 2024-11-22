@@ -33,7 +33,7 @@
     "kotlin-language-version-configured": "true",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/Users/gimlieun/Desktop/spartaProject/KioskProject/src/Main.java",
-    "settings.editor.selected.configurable": "configurable.group.editor",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Console Font",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -59,6 +59,10 @@
       <workItem from="1732172326127" duration="1000" />
       <workItem from="1732172328182" duration="607000" />
       <workItem from="1732176715036" duration="14654000" />
+      <workItem from="1732241058337" duration="87000" />
+      <workItem from="1732241158875" duration="1000" />
+      <workItem from="1732241161388" duration="1000" />
+      <workItem from="1732241164513" duration="1669000" />
     </task>
     <servers />
   </component>
