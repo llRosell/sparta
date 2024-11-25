@@ -1,15 +1,14 @@
-package kioskLv5;
+package kioskChallengeLv1;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-// Menu 클래스: 하나의 카테고리(버거, 음료 등)의 메뉴를 관리
+// 카테고리 메뉴 클래스: 특정 카테고리에 속한 메뉴 목록을 관리
 class Menu {
-    private String name; // 카테고리 이름 (Burgers, Drinks, Desserts 등)
-    private List<MenuItem> menuItems = new ArrayList<>(); // 카테고리 내의 메뉴 항목을 관리하는 리스트
+    private String name; // 카테고리 이름
+    private List<MenuItem> menuItems = new ArrayList<>(); // 카테고리 내 메뉴 항목
 
-    // 생성자: 메뉴 이름에 따라 카테고리별 메뉴 항목을 초기화
+    // 생성자: 카테고리 이름과 메뉴 항목 초기화
     public Menu(String name) {
         this.name = name;
 
@@ -35,27 +34,19 @@ class Menu {
         return name;
     }
 
-    // 해당 카테고리의 메뉴 항목들을 반환
+    // 해당 카테고리 메뉴 항목 반환
     public List<MenuItem> getMenuItems() {
         return menuItems;
     }
 
-    // 메뉴 항목 출력: 번호와 함께 메뉴 항목을 출력
+    // 카테고리 메뉴 항목 출력
     public void printMenu() {
-        int itemCount = 1; // 메뉴 항목 번호 추적
-        for (MenuItem menuItem : getMenuItems()) {
-            // 메뉴 항목 출력 (이름, 가격, 설명)
-            System.out.println(itemCount + ". " + menuItem.getName() + " | W " + (menuItem.getPrice() / 1000.0) + " | " + menuItem.getDescription());
-            itemCount++; // 항목 번호 증가
+        int index = 1; // 메뉴 번호
+        for (MenuItem item : menuItems) {
+            // 메뉴 항목 출력
+            System.out.println(index + ". " + item.getName() + " | W " + (item.getPrice() / 1000.0) + " | " + item.getDescription());
+            index++;
         }
-        // 뒤로가기 옵션 추가
         System.out.println("0. 뒤로가기");
-    }
-
-    // 선택한 메뉴 항목의 상세 정보 출력
-    public void printSelectedMenuInfo(int index) {
-        // 메뉴 항목의 인덱스를 1부터 시작하므로, 0 기반 인덱스로 변경
-        MenuItem selectedItem = menuItems.get(index - 1);
-        System.out.println("선택한 메뉴: " + selectedItem.getName() + " | W " + (selectedItem.getPrice() / 1000.0) + " | " + selectedItem.getDescription());
     }
 }
