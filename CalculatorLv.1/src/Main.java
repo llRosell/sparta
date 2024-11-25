@@ -41,6 +41,17 @@ public class Main {
         scanner.close();
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * 주어진 연산자와 피연산자를 사용해 연산을 수행하고 결과를 반환하는 메서드
+     *
+     * @param operator     사칙연산 기호
+     * @param firstNumber  첫 번째 숫자
+     * @param secondNumber 두 번째 숫자
+     * @return 계산 결과
+     */
+>>>>>>> dd935483ed49e588fa23a13adc95600b78dbb84d
     public static double calculate(char operator, int firstNumber, int secondNumber) {
         double result = 0;
 
