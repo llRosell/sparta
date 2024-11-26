@@ -1,4 +1,4 @@
-package kioskLv5;
+package kiosklv5;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ class Menu {
     // 생성자: 메뉴 이름에 따라 카테고리별 메뉴 항목을 초기화
     public Menu(String name) {
         this.name = name;
+
         if ("Burgers".equals(name)) {
             // 'Burgers' 카테고리에는 여러 버거 메뉴 항목을 추가
             menuItems.add(new MenuItem("ShackBurger", 6900, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
@@ -39,21 +40,15 @@ class Menu {
         return menuItems;
     }
 
-    // 메뉴 항목 출력
+    // 메뉴 항목 출력: 번호와 함께 메뉴 항목을 출력
     public void printMenu() {
-        int itemCount = 1; // 메뉴 항목 번호
-        int nameColumnWidth = 20; // 버거 이름 열의 고정 폭
-
-        // 각 메뉴 항목 출력
+        int itemCount = 1; // 메뉴 항목 번호 추적
         for (MenuItem menuItem : getMenuItems()) {
-            // 각 항목 출력 (이름 열은 고정 폭, 나머지 부분은 자유롭게)
-            System.out.printf("%d. %-20s | W %.1f | %s%n",
-                    itemCount,
-                    menuItem.getName(), // 버거 이름
-                    menuItem.getPrice() / 1000.0, // 가격
-                    menuItem.getDescription()); // 설명
-            itemCount++;
+            // 메뉴 항목 출력 (이름, 가격, 설명)
+            System.out.println(itemCount + ". " + menuItem.getName() + " | W " + (menuItem.getPrice() / 1000.0) + " | " + menuItem.getDescription());
+            itemCount++; // 항목 번호 증가
         }
+        // 뒤로가기 옵션 추가
         System.out.println("0. 뒤로가기");
     }
 

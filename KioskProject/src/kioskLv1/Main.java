@@ -1,4 +1,4 @@
-package kioskLv1;
+package kiosklv1;
 
 import java.util.Scanner;
 

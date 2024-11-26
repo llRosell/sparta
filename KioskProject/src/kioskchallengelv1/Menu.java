@@ -1,4 +1,4 @@
-package kioskChallengeLv1;
+package kioskchallengelv1;
 
 import java.util.ArrayList;
 import java.util.List;
