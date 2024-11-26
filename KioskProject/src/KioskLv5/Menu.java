@@ -1,4 +1,4 @@
-package kioskLv5;
+package kiosklv5;
 
 import java.util.ArrayList;
 import java.util.List;

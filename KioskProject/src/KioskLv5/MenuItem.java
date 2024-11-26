@@ -1,4 +1,4 @@
-package kioskLv5;
+package kiosklv5;
 
 // MenuItem 클래스: 개별 메뉴 항목에 대한 정보를 저장
 class MenuItem {

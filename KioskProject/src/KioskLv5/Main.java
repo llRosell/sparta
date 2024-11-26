@@ -1,4 +1,4 @@
-package kioskLv5;
+package kiosklv5;
 
 public class Main {
 

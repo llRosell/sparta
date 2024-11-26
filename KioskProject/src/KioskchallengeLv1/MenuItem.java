@@ -1,4 +1,4 @@
-package kioskChallengeLv1;
+package kioskchallengelv1;
 
 class MenuItem {
     private String name;
