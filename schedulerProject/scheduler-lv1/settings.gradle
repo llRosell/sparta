@@ -1,0 +1,2 @@
+// settings.gradle
+rootProject.name = 'scheduler-lv1' // 프로젝트 이름 설정

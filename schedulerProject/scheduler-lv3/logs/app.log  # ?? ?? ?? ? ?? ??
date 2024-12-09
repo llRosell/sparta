@@ -1,0 +1,238 @@
+2024-12-09T10:04:55.790+09:00  INFO 73752 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 73752 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:04:55.792+09:00  INFO 73752 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:04:56.379+09:00  INFO 73752 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:04:56.386+09:00  INFO 73752 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:04:56.387+09:00  INFO 73752 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:04:56.412+09:00  INFO 73752 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:04:56.412+09:00  INFO 73752 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 593 ms
+2024-12-09T10:04:56.685+09:00  INFO 73752 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:04:56.691+09:00  INFO 73752 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.126 seconds (process running for 1.326)
+2024-12-09T10:04:59.426+09:00  INFO 73752 --- [scheduler-lv3] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:04:59.429+09:00  INFO 73752 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:04:59.433+09:00  INFO 73752 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-09T10:06:20.974+09:00  INFO 74712 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 74712 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:06:20.976+09:00  INFO 74712 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:06:21.530+09:00  INFO 74712 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:06:21.538+09:00  INFO 74712 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:06:21.539+09:00  INFO 74712 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:06:21.566+09:00  INFO 74712 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:06:21.566+09:00  INFO 74712 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 566 ms
+2024-12-09T10:06:21.888+09:00  INFO 74712 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:06:21.894+09:00  INFO 74712 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.162 seconds (process running for 1.35)
+2024-12-09T10:06:23.622+09:00  INFO 74712 --- [scheduler-lv3] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:06:23.622+09:00  INFO 74712 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:06:23.623+09:00  INFO 74712 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-09T10:07:38.587+09:00  INFO 74712 --- [scheduler-lv3] [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T10:07:38.781+09:00  INFO 74712 --- [scheduler-lv3] [http-nio-8080-exec-4] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@439dc648
+2024-12-09T10:07:38.782+09:00  INFO 74712 --- [scheduler-lv3] [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T10:09:21.677+09:00  INFO 74712 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T10:09:21.688+09:00  INFO 74712 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T10:13:49.142+09:00  INFO 79305 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 79305 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:13:49.144+09:00  INFO 79305 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:13:49.691+09:00  INFO 79305 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:13:49.698+09:00  INFO 79305 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:13:49.698+09:00  INFO 79305 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:13:49.724+09:00  INFO 79305 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:13:49.724+09:00  INFO 79305 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 553 ms
+2024-12-09T10:13:49.972+09:00  INFO 79305 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:13:49.977+09:00  INFO 79305 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.086 seconds (process running for 1.275)
+2024-12-09T10:14:25.702+09:00  INFO 79305 --- [scheduler-lv3] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:14:25.703+09:00  INFO 79305 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:14:25.705+09:00  INFO 79305 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-09T10:14:25.771+09:00  INFO 79305 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T10:14:26.150+09:00  INFO 79305 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6d95e7d
+2024-12-09T10:14:26.151+09:00  INFO 79305 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T10:18:11.895+09:00  INFO 79305 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T10:18:11.904+09:00  INFO 79305 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T10:18:14.671+09:00  INFO 82071 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 82071 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:18:14.674+09:00  INFO 82071 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:18:15.266+09:00  INFO 82071 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:18:15.273+09:00  INFO 82071 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:18:15.273+09:00  INFO 82071 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:18:15.300+09:00  INFO 82071 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:18:15.301+09:00  INFO 82071 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 595 ms
+2024-12-09T10:18:15.538+09:00  INFO 82071 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:18:15.543+09:00  INFO 82071 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.248 seconds (process running for 1.454)
+2024-12-09T10:20:55.388+09:00  INFO 83833 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 83833 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:20:55.391+09:00  INFO 83833 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:20:56.023+09:00  INFO 83833 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:20:56.031+09:00  INFO 83833 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:20:56.031+09:00  INFO 83833 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:20:56.059+09:00  INFO 83833 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:20:56.059+09:00  INFO 83833 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 638 ms
+2024-12-09T10:20:56.314+09:00  INFO 83833 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:20:56.319+09:00  INFO 83833 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.189 seconds (process running for 1.39)
+2024-12-09T10:21:02.929+09:00  INFO 83833 --- [scheduler-lv3] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:21:02.929+09:00  INFO 83833 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:21:02.931+09:00  INFO 83833 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-09T10:21:02.988+09:00  INFO 83833 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T10:21:03.221+09:00  INFO 83833 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@24f9e214
+2024-12-09T10:21:03.221+09:00  INFO 83833 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T10:22:26.884+09:00  INFO 83833 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T10:22:26.897+09:00  INFO 83833 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T10:22:45.183+09:00  INFO 84961 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 84961 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:22:45.184+09:00  INFO 84961 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:22:45.773+09:00  INFO 84961 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:22:45.783+09:00  INFO 84961 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:22:45.783+09:00  INFO 84961 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:22:45.809+09:00  INFO 84961 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:22:45.810+09:00  INFO 84961 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 600 ms
+2024-12-09T10:22:46.045+09:00  INFO 84961 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:22:46.050+09:00  INFO 84961 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.107 seconds (process running for 1.302)
+2024-12-09T10:23:07.395+09:00  INFO 84961 --- [scheduler-lv3] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:23:07.395+09:00  INFO 84961 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:23:07.397+09:00  INFO 84961 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-09T10:23:07.433+09:00  WARN 84961 --- [scheduler-lv3] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<java.lang.Void> scheduleapp.controller.AuthorController.deleteAuthor(java.lang.Long,scheduleapp.dto.AuthorRequestDto,java.lang.String)]
+2024-12-09T10:31:25.502+09:00  INFO 90404 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 90404 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:31:25.506+09:00  INFO 90404 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:31:26.140+09:00  INFO 90404 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:31:26.148+09:00  INFO 90404 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:31:26.148+09:00  INFO 90404 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:31:26.179+09:00  INFO 90404 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:31:26.179+09:00  INFO 90404 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 648 ms
+2024-12-09T10:31:26.435+09:00  INFO 90404 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:31:26.440+09:00  INFO 90404 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.185 seconds (process running for 1.38)
+2024-12-09T10:31:31.328+09:00  INFO 90404 --- [scheduler-lv3] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:31:31.329+09:00  INFO 90404 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:31:31.331+09:00  INFO 90404 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-09T10:31:31.364+09:00  INFO 90404 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T10:31:31.608+09:00  INFO 90404 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f7c0b99
+2024-12-09T10:31:31.610+09:00  INFO 90404 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T10:33:56.828+09:00  INFO 90404 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T10:33:56.837+09:00  INFO 90404 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T10:33:58.941+09:00  INFO 91950 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 91950 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:33:58.943+09:00  INFO 91950 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:33:59.531+09:00  INFO 91950 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:33:59.538+09:00  INFO 91950 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:33:59.539+09:00  INFO 91950 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:33:59.566+09:00  INFO 91950 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:33:59.567+09:00  INFO 91950 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 582 ms
+2024-12-09T10:33:59.821+09:00  INFO 91950 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:33:59.828+09:00  INFO 91950 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.13 seconds (process running for 1.305)
+2024-12-09T10:34:05.987+09:00  INFO 91950 --- [scheduler-lv3] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:34:05.988+09:00  INFO 91950 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:34:05.988+09:00  INFO 91950 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-09T10:34:06.016+09:00  INFO 91950 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T10:34:06.183+09:00  INFO 91950 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@730acf9f
+2024-12-09T10:34:06.183+09:00  INFO 91950 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T10:38:09.707+09:00  INFO 91950 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T10:38:09.716+09:00  INFO 91950 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T10:38:12.193+09:00  INFO 94569 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 94569 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:38:12.195+09:00  INFO 94569 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:38:12.799+09:00  INFO 94569 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:38:12.807+09:00  INFO 94569 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:38:12.807+09:00  INFO 94569 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:38:12.837+09:00  INFO 94569 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:38:12.837+09:00  INFO 94569 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 619 ms
+2024-12-09T10:38:13.120+09:00  INFO 94569 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:38:13.125+09:00  INFO 94569 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.173 seconds (process running for 1.426)
+2024-12-09T10:38:15.869+09:00  INFO 94569 --- [scheduler-lv3] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:38:15.869+09:00  INFO 94569 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:38:15.870+09:00  INFO 94569 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-09T10:38:15.925+09:00  INFO 94569 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T10:38:16.133+09:00  INFO 94569 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@10e11c0a
+2024-12-09T10:38:16.134+09:00  INFO 94569 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T10:42:17.167+09:00  INFO 94569 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T10:42:17.176+09:00  INFO 94569 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T10:46:24.214+09:00  INFO 99684 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 99684 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:46:24.228+09:00  INFO 99684 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:46:25.018+09:00  INFO 99684 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:46:25.027+09:00  INFO 99684 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:46:25.028+09:00  INFO 99684 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:46:25.070+09:00  INFO 99684 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:46:25.070+09:00  INFO 99684 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 805 ms
+2024-12-09T10:46:25.388+09:00  INFO 99684 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:46:25.393+09:00  INFO 99684 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.42 seconds (process running for 1.605)
+2024-12-09T10:46:28.199+09:00  INFO 99684 --- [scheduler-lv3] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:46:28.200+09:00  INFO 99684 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:46:28.203+09:00  INFO 99684 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-09T10:46:28.258+09:00  INFO 99684 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T10:46:28.481+09:00  INFO 99684 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@8e564e6
+2024-12-09T10:46:28.482+09:00  INFO 99684 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T10:49:31.652+09:00  INFO 99684 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T10:49:31.663+09:00  INFO 99684 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T10:49:33.256+09:00  INFO 1942 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 1942 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:49:33.259+09:00  INFO 1942 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:49:33.872+09:00  INFO 1942 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:49:33.881+09:00  INFO 1942 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:49:33.882+09:00  INFO 1942 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:49:33.919+09:00  INFO 1942 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:49:33.919+09:00  INFO 1942 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 627 ms
+2024-12-09T10:49:34.196+09:00  INFO 1942 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:49:34.201+09:00  INFO 1942 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.193 seconds (process running for 1.439)
+2024-12-09T10:50:01.630+09:00  INFO 1942 --- [scheduler-lv3] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:50:01.631+09:00  INFO 1942 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:50:01.633+09:00  INFO 1942 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-09T10:50:01.695+09:00  INFO 1942 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T10:50:01.895+09:00  INFO 1942 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7202ec45
+2024-12-09T10:50:01.896+09:00  INFO 1942 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T10:52:45.950+09:00  INFO 1942 --- [scheduler-lv3] [http-nio-8080-exec-10] scheduleapp.controller.TaskController    : GET /tasks 요청 - authorId: 6, password: 1234
+2024-12-09T10:52:45.987+09:00 ERROR 1942 --- [scheduler-lv3] [http-nio-8080-exec-10] scheduleapp.controller.TaskController    : 비밀번호 검증 실패 - authorId: 6, 에러 메시지: StatementCallback; bad SQL grammar [SELECT * FROM task ORDER BY updated DESC]
+2024-12-09T10:54:02.816+09:00  INFO 1942 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T10:54:02.829+09:00  INFO 1942 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T10:57:09.625+09:00  INFO 6759 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 6759 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:57:09.630+09:00  INFO 6759 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:57:10.248+09:00  INFO 6759 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:57:10.255+09:00  INFO 6759 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:57:10.255+09:00  INFO 6759 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:57:10.283+09:00  INFO 6759 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:57:10.284+09:00  INFO 6759 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 625 ms
+2024-12-09T10:57:10.560+09:00  INFO 6759 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:57:10.566+09:00  INFO 6759 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.183 seconds (process running for 1.363)
+2024-12-09T10:57:21.905+09:00  INFO 6969 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 6969 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T10:57:21.906+09:00  INFO 6969 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T10:57:22.421+09:00  INFO 6969 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T10:57:22.428+09:00  INFO 6969 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T10:57:22.428+09:00  INFO 6969 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T10:57:22.454+09:00  INFO 6969 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T10:57:22.454+09:00  INFO 6969 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 520 ms
+2024-12-09T10:57:22.717+09:00  INFO 6969 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T10:57:22.722+09:00  INFO 6969 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.04 seconds (process running for 1.219)
+2024-12-09T10:57:29.488+09:00  INFO 6969 --- [scheduler-lv3] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T10:57:29.489+09:00  INFO 6969 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T10:57:29.491+09:00  INFO 6969 --- [scheduler-lv3] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-09T10:57:29.515+09:00  INFO 6969 --- [scheduler-lv3] [http-nio-8080-exec-1] scheduleapp.controller.TaskController    : GET /tasks 요청 - authorId: 6, password: 1234
+2024-12-09T10:57:29.521+09:00  INFO 6969 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T10:57:29.746+09:00  INFO 6969 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@64522c7
+2024-12-09T10:57:29.747+09:00  INFO 6969 --- [scheduler-lv3] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T10:57:29.776+09:00 ERROR 6969 --- [scheduler-lv3] [http-nio-8080-exec-1] scheduleapp.controller.TaskController    : 비밀번호 검증 실패 - authorId: 6, 에러 메시지: StatementCallback; bad SQL grammar [SELECT * FROM task ORDER BY updated DESC]
+2024-12-09T10:59:30.153+09:00  INFO 6969 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T10:59:30.163+09:00  INFO 6969 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T11:00:07.768+09:00  INFO 8673 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 8673 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T11:00:07.771+09:00  INFO 8673 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T11:00:08.337+09:00  INFO 8673 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T11:00:08.346+09:00  INFO 8673 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T11:00:08.346+09:00  INFO 8673 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T11:00:08.374+09:00  INFO 8673 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T11:00:08.374+09:00  INFO 8673 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 567 ms
+2024-12-09T11:00:08.636+09:00  INFO 8673 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T11:00:08.641+09:00  INFO 8673 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.11 seconds (process running for 1.292)
+2024-12-09T11:00:12.269+09:00  INFO 8673 --- [scheduler-lv3] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T11:00:12.269+09:00  INFO 8673 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T11:00:12.270+09:00  INFO 8673 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-09T11:00:12.293+09:00  INFO 8673 --- [scheduler-lv3] [http-nio-8080-exec-2] scheduleapp.controller.TaskController    : GET /tasks 요청 - authorId: 6, password: 1234
+2024-12-09T11:00:12.298+09:00  INFO 8673 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T11:00:12.454+09:00  INFO 8673 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5de1154f
+2024-12-09T11:00:12.455+09:00  INFO 8673 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T11:00:12.476+09:00  INFO 8673 --- [scheduler-lv3] [http-nio-8080-exec-2] scheduleapp.controller.TaskController    : 할일 조회 성공 - authorId: 6, 할일 수: 6
+2024-12-09T11:00:30.473+09:00  INFO 8673 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T11:00:30.480+09:00  INFO 8673 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-09T11:00:32.559+09:00  INFO 8893 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Starting ScheduleAppApplication using Java 17.0.13 with PID 8893 (/Users/gimlieun/Desktop/scheduler-lv3/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduler-lv3)
+2024-12-09T11:00:32.561+09:00  INFO 8893 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-12-09T11:00:33.071+09:00  INFO 8893 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-09T11:00:33.078+09:00  INFO 8893 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-09T11:00:33.078+09:00  INFO 8893 --- [scheduler-lv3] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-12-09T11:00:33.103+09:00  INFO 8893 --- [scheduler-lv3] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-09T11:00:33.103+09:00  INFO 8893 --- [scheduler-lv3] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 513 ms
+2024-12-09T11:00:33.337+09:00  INFO 8893 --- [scheduler-lv3] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-09T11:00:33.342+09:00  INFO 8893 --- [scheduler-lv3] [main] scheduleapp.ScheduleAppApplication       : Started ScheduleAppApplication in 1.013 seconds (process running for 1.198)
+2024-12-09T11:00:35.670+09:00  INFO 8893 --- [scheduler-lv3] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-09T11:00:35.670+09:00  INFO 8893 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-09T11:00:35.673+09:00  INFO 8893 --- [scheduler-lv3] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-12-09T11:00:35.695+09:00  INFO 8893 --- [scheduler-lv3] [http-nio-8080-exec-2] scheduleapp.controller.TaskController    : GET /tasks 요청 - authorId: 6, password: 1234
+2024-12-09T11:00:35.700+09:00  INFO 8893 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-09T11:00:35.866+09:00  INFO 8893 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@486497d4
+2024-12-09T11:00:35.867+09:00  INFO 8893 --- [scheduler-lv3] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-09T11:00:35.890+09:00  INFO 8893 --- [scheduler-lv3] [http-nio-8080-exec-2] scheduleapp.controller.TaskController    : 할일 조회 성공 - authorId: 6, 할일 수: 6
+2024-12-09T11:00:45.484+09:00  INFO 8893 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-09T11:00:45.495+09:00  INFO 8893 --- [scheduler-lv3] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
