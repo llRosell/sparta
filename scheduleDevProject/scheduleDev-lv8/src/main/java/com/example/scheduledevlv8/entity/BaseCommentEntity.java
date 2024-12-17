@@ -17,10 +17,13 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseCommentEntity {
 
+    // 생성일자: 엔티티가 처음 생성된 시점을 자동으로 저장
+    // updatable = false: 생성일자는 수정되지 않도록 설정
     @CreatedDate
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    // 수정일자: 엔티티가 수정될 때마다 자동으로 업데이트되는 시점
     @LastModifiedDate
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;

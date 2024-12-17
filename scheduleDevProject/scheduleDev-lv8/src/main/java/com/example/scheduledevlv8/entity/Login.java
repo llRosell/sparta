@@ -19,9 +19,8 @@ public class Login {
 
     @Id
     @Column(nullable = false)
-    private String email;
+    private String email;  // 로그인에 사용되는 이메일 주소
 
     @Column(nullable = false)
-    private String password;
-
+    private String password;  // 사용자의 로그인 비밀번호
 }

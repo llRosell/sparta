@@ -15,10 +15,14 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
 
+    // 생성일자: 엔티티가 처음 생성될 때 자동으로 기록되는 날짜와 시간
+    // updatable = false: 생성일자는 수정되지 않도록 설정
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
+    // 수정일자: 엔티티가 수정될 때마다 자동으로 기록되는 날짜와 시간
     @LastModifiedDate
     private LocalDateTime modifiedAt;
+
 }

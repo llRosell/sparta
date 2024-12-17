@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class CommentRequestDto {
 
-    private Long userId;
-    private Long scheduleId;
-    private String content;
+    private Long userId; // 댓글을 작성한 유저의 ID
+    private Long scheduleId; // 댓글이 작성된 일정의 ID
+    private String content; // 댓글 내용
 
 }
