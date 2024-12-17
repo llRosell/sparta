@@ -1,0 +1,26 @@
+2024-12-13T22:29:19.307+09:00  INFO 61887 --- [scheduleDev-lv4] [main] c.e.s.ScheduleDevLv4Application          : Starting ScheduleDevLv4Application using Java 17.0.13 with PID 61887 (/Users/gimlieun/Desktop/scheduleDev-lv4/out/production/classes started by gimlieun in /Users/gimlieun/Desktop/scheduleDev-lv4)
+2024-12-13T22:29:19.308+09:00 DEBUG 61887 --- [scheduleDev-lv4] [main] c.e.s.ScheduleDevLv4Application          : Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-13T22:29:19.309+09:00  INFO 61887 --- [scheduleDev-lv4] [main] c.e.s.ScheduleDevLv4Application          : No active profile set, falling back to 1 default profile: "default"
+2024-12-13T22:29:19.949+09:00  INFO 61887 --- [scheduleDev-lv4] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-13T22:29:19.949+09:00  INFO 61887 --- [scheduleDev-lv4] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2024-12-13T22:29:19.973+09:00  INFO 61887 --- [scheduleDev-lv4] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-13T22:29:20.053+09:00  INFO 61887 --- [scheduleDev-lv4] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-13T22:29:20.080+09:00  INFO 61887 --- [scheduleDev-lv4] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2024-12-13T22:29:20.095+09:00  INFO 61887 --- [scheduleDev-lv4] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-13T22:29:20.248+09:00  INFO 61887 --- [scheduleDev-lv4] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-13T22:29:20.444+09:00  INFO 61887 --- [scheduleDev-lv4] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4269aad7
+2024-12-13T22:29:20.445+09:00  INFO 61887 --- [scheduleDev-lv4] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-13T22:29:20.486+09:00  WARN 61887 --- [scheduleDev-lv4] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-13T22:29:20.495+09:00  INFO 61887 --- [scheduleDev-lv4] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.40
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2024-12-13T22:29:20.888+09:00  INFO 61887 --- [scheduleDev-lv4] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-13T22:29:21.272+09:00  INFO 61887 --- [scheduleDev-lv4] [main] c.e.s.ScheduleDevLv4Application          : Started ScheduleDevLv4Application in 2.222 seconds (process running for 2.421)
+2024-12-13T22:31:15.573+09:00  INFO 61887 --- [scheduleDev-lv4] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-13T22:37:15.444+09:00  INFO 61887 --- [scheduleDev-lv4] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-13T22:37:15.457+09:00  INFO 61887 --- [scheduleDev-lv4] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
