@@ -1,11 +1,15 @@
 package com.example.scheduledevlv8.service;
 
 import com.example.scheduledevlv8.entity.Login;
+import com.example.scheduledevlv8.entity.Session;
 import com.example.scheduledevlv8.repository.LoginRepository;
+import com.example.scheduledevlv8.repository.SessionRepository;
+import com.example.scheduledevlv8.service.PasswordEncryptionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -14,6 +18,7 @@ import java.util.Optional;
 public class LoginService {
 
     private final LoginRepository loginRepository;  // 로그인 관련 데이터를 처리하는 리포지토리
+    private final SessionRepository sessionRepository;  // 세션 관련 데이터를 처리하는 리포지토리
     private final PasswordEncryptionService passwordEncryptionService;  // 비밀번호 암호화 서비스
 
     /**
@@ -62,5 +67,29 @@ public class LoginService {
         }
 
         return user;  // 비밀번호가 일치하면 인증된 사용자 객체 반환
+    }
+
+    /**
+     * 세션을 MySQL에 저장하는 메서드
+     * @param sessionId 세션 ID
+     * @param email 세션에 연결된 사용자 이메일
+     */
+    public void storeSession(String sessionId, String email) {
+        // Session.builder()를 사용하여 객체를 생성
+        Session session = Session.builder()
+                .sessionId(sessionId)
+                .email(email)
+                .createdAt(LocalDateTime.now())  // createdAt을 현재 시간으로 설정
+                .build();
+        sessionRepository.save(session);
+    }
+
+    /**
+     * 세션 ID로 세션 정보 조회
+     * @param sessionId 세션 ID
+     * @return 세션 정보
+     */
+    public Optional<Session> getSessionById(String sessionId) {
+        return sessionRepository.findBySessionId(sessionId);
     }
 }

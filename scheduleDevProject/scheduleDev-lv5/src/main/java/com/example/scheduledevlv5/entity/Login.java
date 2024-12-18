@@ -24,4 +24,8 @@ public class Login {
     @Column(nullable = false)
     private String password;
 
+    public Login(String email) {
+        this.email = email;
+    }
+
 }
