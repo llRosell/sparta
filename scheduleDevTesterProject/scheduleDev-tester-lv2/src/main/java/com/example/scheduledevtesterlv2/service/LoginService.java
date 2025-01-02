@@ -1,0 +1,127 @@
+package com.example.scheduledevtesterlv2.service;
+
+import com.example.scheduledevtesterlv2.entity.Login;
+import com.example.scheduledevtesterlv2.entity.Session;
+import com.example.scheduledevtesterlv2.repository.LoginRepository;
+import com.example.scheduledevtesterlv2.repository.SessionRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+@Service
+@Slf4j
+@RequiredArgsConstructor
+public class LoginService {
+
+    private final LoginRepository loginRepository;  // 로그인 관련 데이터를 처리하는 리포지토리
+    private final SessionRepository sessionRepository;  // 세션 관련 데이터를 처리하는 리포지토리
+    private final PasswordEncryptionService passwordEncryptionService;  // 비밀번호 암호화 서비스
+
+    /**
+     * 사용자 회원가입 처리
+     * @param email 사용자의 이메일
+     * @param password 사용자의 비밀번호
+     * @return 회원가입 성공 여부
+     */
+    public boolean signUp(String email, String password) {
+        // 이메일 중복 체크: 이미 존재하는 이메일인지 확인
+        Optional<Login> existingUser = loginRepository.findByEmail(email);
+        if (existingUser.isPresent()) {
+            log.error("회원가입 실패: 이미 존재하는 이메일입니다. email={}", email);  // 이미 존재하는 이메일에 대해 로그 기록
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exists");
+        }
+
+        // 비밀번호 암호화: 비밀번호를 안전하게 암호화하여 저장
+        String encryptedPassword = passwordEncryptionService.encodePassword(password);
+
+        // 새로운 사용자 정보 저장
+        Login newUser = new Login(email, encryptedPassword);  // 새로운 로그인 객체 생성
+        loginRepository.save(newUser);  // DB에 사용자 정보 저장
+        return true;  // 회원가입 성공
+    }
+
+    /**
+     * 사용자 인증 처리
+     * @param email 사용자의 이메일
+     * @param password 사용자의 비밀번호
+     * @return 인증된 사용자 정보, 인증 실패시 null
+     */
+    public Login authenticateUser(String email, String password) {
+        // 주어진 이메일로 사용자를 찾기
+        Optional<Login> userOptional = loginRepository.findByEmail(email);
+
+        // 사용자가 존재하지 않으면 예외 발생
+        if (!userOptional.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid email or password");
+        }
+
+        Login user = userOptional.get();  // Optional에서 사용자 객체 추출
+
+        // 비밀번호가 일치하는지 확인
+        if (!passwordEncryptionService.matches(password, user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid email or password");
+        }
+
+        return user;  // 비밀번호가 일치하면 인증된 사용자 객체 반환
+    }
+
+    /**
+     * 세션을 MySQL에 저장하는 메서드
+     * @param sessionId 세션 ID
+     * @param email 세션에 연결된 사용자 이메일
+     */
+    public void storeSession(String sessionId, String email) {
+        // Session.builder()를 사용하여 객체를 생성
+        Session session = Session.builder()
+                .sessionId(sessionId)
+                .email(email)
+                .createdAt(LocalDateTime.now())  // createdAt을 현재 시간으로 설정
+                .build();
+        sessionRepository.save(session);
+    }
+
+    /**
+     * 세션 ID를 사용하여 사용자 인증
+     * @param sessionId 세션 ID
+     * @return 인증된 사용자 정보, 세션이 유효하지 않거나 만료되었으면 예외 발생
+     */
+    public Login authenticateUserBySession(String sessionId) {
+        // 세션 ID로 세션 정보 조회
+        Optional<Session> sessionOptional = sessionRepository.findBySessionId(sessionId);
+
+        if (!sessionOptional.isPresent()) {
+            log.error("유효하지 않은 세션 ID: {}", sessionId);
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid session");
+        }
+
+        // 세션 유효성 확인 (만료 여부 체크)
+        Session session = sessionOptional.get();
+        if (isSessionExpired(session)) {
+            log.error("세션이 만료되었습니다. sessionId={}", sessionId);
+            sessionRepository.delete(session); // 만료된 세션 삭제
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Session expired");
+        }
+
+        // 세션에 연결된 이메일로 사용자 정보 조회
+        String email = session.getEmail();
+        return loginRepository.findByEmail(email).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found")
+        );
+    }
+
+    /**
+     * 세션이 만료되었는지 확인
+     * @param session 세션 객체
+     * @return 만료 여부
+     */
+    private boolean isSessionExpired(Session session) {
+        // 세션 만료 시간 설정 (예: 30분)
+        LocalDateTime expirationTime = session.getCreatedAt().plusMinutes(30);
+        return LocalDateTime.now().isAfter(expirationTime);
+    }
+}
